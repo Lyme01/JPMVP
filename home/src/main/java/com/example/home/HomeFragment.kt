@@ -1,11 +1,15 @@
 package com.example.home
 
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.alibaba.android.arouter.launcher.ARouter
+import com.example.common.arouter.ActionString
+import com.example.common.arouter.RouterUrl
 import com.example.common.base.BaseFragment
-import com.example.home.adapter.HomeAdapter
 import com.example.common.bean.NewsBean
+import com.example.home.adapter.HomeAdapter
 import com.example.home.contract.HomeContract
 import com.example.home.databinding.FragmentHomeBinding
 import com.example.home.presenter.HomePresenter
@@ -45,12 +49,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeCon
 //    }
 
     private fun setSimpleAdapter(listData: NewsBean) {
-        var homeAdapter = HomeAdapter(listData,this)
+        var homeAdapter = HomeAdapter(listData, this)
         binding.recycleView?.adapter = homeAdapter
         //LayoutManger必须设置，否则不显示列表
         binding.recycleView?.layoutManager = LinearLayoutManager(context)
         val dividerItemDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
         binding.recycleView.addItemDecoration(dividerItemDecoration);
+        homeAdapter!!.setOnItemClickListener(object : HomeAdapter.ItemClickListener {
+            override fun onItemClickListener(position: Int) {
+//                Toast.makeText(this, listData.data[position], Toast.LENGTH_SHORT).show()
+               ARouter.getInstance().build(RouterUrl.Web.H5).withString(ActionString.H5URL,listData.data[position].url).navigation()
+            }
+        })
+
     }
 
     override fun showNews(newsBean: NewsBean) {

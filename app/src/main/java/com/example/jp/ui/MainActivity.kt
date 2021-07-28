@@ -4,7 +4,9 @@ package com.example.jp.ui
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.common.adapter.CommonFragmentPagerAdapter
+import com.example.common.arouter.RouterUrl
 import com.example.common.base.BaseActivity
 import com.example.common.view.BottomNavView
 import com.example.find.FindFragment
@@ -14,11 +16,9 @@ import com.example.jp.contract.MainContract
 import com.example.jp.databinding.ActivityMainBinding
 import com.example.jp.presenter.MainPresenter
 import com.example.mine.MineFragment
-
-
-
 import java.util.*
 
+ @Route(path = RouterUrl.APP.Tab)
 class MainActivity : BaseActivity<ActivityMainBinding, MainPresenter>(), MainContract.View ,
     BottomNavView.OnBottomViewItemSelectedListener {
 
@@ -93,9 +93,4 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainPresenter>(), MainCon
     }
 
 
-
-
-//    override fun testTab(string: String) {
-//
-//    }
 
