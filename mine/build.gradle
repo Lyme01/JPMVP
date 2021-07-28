@@ -1,0 +1,16 @@
+apply from: "../common.gradle"
+apply plugin: 'kotlin-android'
+
+android {
+    defaultConfig {
+        if (!isModule.toBoolean()) {
+            applicationId 'com.example.start'
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.3.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+}

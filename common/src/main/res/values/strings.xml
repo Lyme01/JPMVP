@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">JPmvp</string>
+    <string name="current_state">当前状态</string>
+    <string name="status">我是标题栏</string>
+    <string name="handle_detail">办理详情</string>
+    <string name="phone_number">电话号码</string>
+    <string name="contact">通讯录</string>
+    <string name="close">关闭</string>
+    <string name="tel_dialog">打电话</string>
+    <string name="search_hint">搜索</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_find_fragment">Hello Find fragment</string>
+    <string name="hello_mine_fragment">Hello Mine fragment</string>
+    <string-array name="shop_detail">
+        <item>产品</item>
+        <item>详情</item>
+        <item>推荐</item>
+    </string-array>
+</resources>
