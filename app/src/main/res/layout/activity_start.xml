@@ -4,15 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/welcome"
+    android:paddingBottom="16dp"
+    android:paddingTop="@dimen/dp_16"
+    android:paddingLeft="@dimen/dp_64"
+    android:paddingRight="@dimen/dp_64"
+    android:gravity="center"
+    android:background="@color/white"
     tools:context=".ui.StartActivity">
 
     <com.eftimoff.androipathview.PathView
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/pathView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:pathColor="@android:color/white"
-        app:svg="@raw/setting"
+        android:layout_marginTop="-20dp"
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="@dimen/dp_200"
+        app:pathColor="@android:color/holo_red_dark"
+        app:svg="@raw/sss"
         app:pathWidth="5dp"/>
 
 
