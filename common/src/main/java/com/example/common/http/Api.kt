@@ -77,8 +77,8 @@ class Api {
             .create()
 
         val retrofit: Retrofit = Retrofit.Builder()
-//            .baseUrl("https://www.wanandroid.com") //添加转换器支持返回结果为String类型
-            .baseUrl("http://v.juhe.cn/toutiao/") //添加转换器支持返回结果为String类型
+            .baseUrl("https://www.wanandroid.com") //添加转换器支持返回结果为String类型
+//            .baseUrl("http://v.juhe.cn/toutiao/") //添加转换器支持返回结果为String类型
             .addConverterFactory(StringConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .client(getOkHttpClient()) //添加rxjava2适配器

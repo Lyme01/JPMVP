@@ -1,18 +1,16 @@
 package com.example.home.adapter
 
 
-import android.content.ClipData
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.common.bean.NewsBean
 import com.example.home.HomeFragment
 import com.example.home.R
+import java.text.SimpleDateFormat
 
 
 class HomeAdapter(arrayData: NewsBean, var mContext: HomeFragment): RecyclerView.Adapter<RecyclerView.ViewHolder>(),View.OnClickListener {
@@ -30,12 +28,14 @@ class HomeAdapter(arrayData: NewsBean, var mContext: HomeFragment): RecyclerView
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is HomeViewHolder) {
-            holder.image?.let { Glide.with(mContext).load(listData.data[position].thumbnail_pic_s).into(
-                it
-            ) }
-            holder.name?.text = listData.data[position].title
-            holder.author?.text =  listData.data[position].author_name
-            holder.date?.text=listData.data[position].date
+//            holder.image?.let { Glide.with(mContext).load(listData.data[position].thumbnail_pic_s).into(
+//                it
+//            ) }
+            val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+            var data:String=sdf.format(listData.datas[position].shareDate)
+            holder.name?.text = listData.datas[position].title
+            holder.author?.text = listData.datas[position].shareUser
+            holder.date?.text=data
             holder.itemView.setOnClickListener {
                 itemClickListener!!.onItemClickListener(position)
             }
@@ -45,7 +45,7 @@ class HomeAdapter(arrayData: NewsBean, var mContext: HomeFragment): RecyclerView
 
     }
     override fun getItemCount(): Int {
-        return listData.data.size;
+        return listData.size
     }
 
     class HomeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -72,7 +72,7 @@ class HomeAdapter(arrayData: NewsBean, var mContext: HomeFragment): RecyclerView
     }
 
     override fun onClick(v: View?) {
-        TODO("Not yet implemented")
+
     }
 
 

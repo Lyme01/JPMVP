@@ -40,13 +40,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeCon
      return HomePresenter()
     }
 
-//    override fun testView(list: List<DataBean>) {
-//        setSimpleAdapter(list)
-//    }
-//
-//    override fun testTab(tabBean: TabBean) {
-//       binding.text.text=tabBean.datas[2].title
-//    }
 
     private fun setSimpleAdapter(listData: NewsBean) {
         var homeAdapter = HomeAdapter(listData, this)
@@ -57,8 +50,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeCon
         binding.recycleView.addItemDecoration(dividerItemDecoration);
         homeAdapter!!.setOnItemClickListener(object : HomeAdapter.ItemClickListener {
             override fun onItemClickListener(position: Int) {
-//                Toast.makeText(this, listData.data[position], Toast.LENGTH_SHORT).show()
-               ARouter.getInstance().build(RouterUrl.Web.H5).withString(ActionString.H5URL,listData.data[position].url).navigation()
+               ARouter.getInstance().build(RouterUrl.Web.H5).withString(ActionString.H5URL,listData.datas[position].link).navigation()
             }
         })
 
@@ -67,6 +59,5 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeCon
     override fun showNews(newsBean: NewsBean) {
         setSimpleAdapter(newsBean)
     }
-
 
 }

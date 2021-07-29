@@ -14,7 +14,7 @@ interface ApiService {
 //    @GET("/wxarticle/chapters/json")
 //    fun getData(): Observable<BaseBean<List<DataBean>>>
 
-    @GET("index?type=top&key=3614222d9dc1db0569d4f73df78466b5")
+    @GET("/article/list/0/json")
     fun getNews():Observable<BaseBean<NewsBean>>
 
 //    @GET("/article/listproject/0/json")

@@ -20,17 +20,15 @@ class StartActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN);
         pathView = findViewById<View>(R.id.pathView) as PathView
 
-        pathView?.pathAnimator
-            ?.delay(100)
-            ?.duration(5000)
-            ?.listenerEnd(PathView.AnimatorBuilder.ListenerEnd() {
+        pathView?.pathAnimator?.also {
+            it.delay(100)
+            it.duration(5000)
+            it.listenerEnd {
+                jump()
+            }
+            it.start();
+        }
 
-                @Override
-                fun onAnimationEnd() {
-                    // 监听动画完成之后的跳转实行
-                    jump();
-                }
-            })?.start();
 
     }
 
