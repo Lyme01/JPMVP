@@ -22,8 +22,5 @@ interface ApiService {
     @POST("/user/login")
     fun login(@Field("username") username: String?,
         @Field("password") password: String? ):Observable<BaseBean<UserBean>>
-//     @POST("user/login")
-//    @FormUrlEncoded
-//    fun login(@Field("username") username: String?,
-//              @Field("password") password: String?): Observable<BaseBean<UserBean?>?>?
+
 }
