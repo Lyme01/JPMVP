@@ -2,13 +2,11 @@ package com.example.common.http
 
 
 import android.util.Log
-
 import com.google.gson.GsonBuilder
 import com.google.gson.TypeAdapter
 import com.google.gson.stream.JsonReader
 import com.google.gson.stream.JsonToken
 import com.google.gson.stream.JsonWriter
-
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
@@ -98,11 +96,8 @@ class Api {
         // Retrofit是基于OkHttpClient的，可以创建一个OkHttpClient进行一些配置
         return OkHttpClient.Builder() //打印接口信息，方便接口调试
             .addInterceptor(HttpLoggingInterceptor(HttpLoggingInterceptor.Logger { message ->
-                Log.e(
-                    "TAG",
-                    "log: $message"
-                )
-            }).setLevel(HttpLoggingInterceptor.Level.BASIC))
+                Log.e("zcb", "OkHttp====Message:$message");
+            }).setLevel(HttpLoggingInterceptor.Level.BODY))
             .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
             .addInterceptor(RqInterceptor())
             .readTimeout(TIMEOUT, TimeUnit.SECONDS)
@@ -128,6 +123,7 @@ class Api {
             if (body != null) {
                 val json = body.string()
                 Log.e(response.code().toString() + "  response ---", json)
+                Log.e("TAG", response.body().toString())
                 if (response.code() != 200 ) {
                     throw ApiException(Throwable(json), response.code())
                 }

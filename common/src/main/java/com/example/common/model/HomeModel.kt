@@ -9,8 +9,8 @@ import io.reactivex.schedulers.Schedulers
 
 class HomeModel {
 
-    fun getNews() : Observable<BaseBean<NewsBean>> {
-        return  Api.getInstance().getApiService().getNews().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+    fun getNews(num:Int) : Observable<BaseBean<NewsBean>> {
+        return  Api.getInstance().getApiService().getNews(num).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
     }
 
 }

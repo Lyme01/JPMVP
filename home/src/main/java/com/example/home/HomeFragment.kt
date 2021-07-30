@@ -1,6 +1,6 @@
 package com.example.home
 
-import android.widget.Toast
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +13,7 @@ import com.example.home.adapter.HomeAdapter
 import com.example.home.contract.HomeContract
 import com.example.home.databinding.FragmentHomeBinding
 import com.example.home.presenter.HomePresenter
+import java.util.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -25,14 +26,16 @@ private const val ARG_PARAM2 = "param2"
  * Use the [HomeFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeContract.View {
+class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeContract.View , View.OnClickListener {
 
+   lateinit var homeAdapter: HomeAdapter
 
-
+    private val listData: List<NewsBean> = ArrayList<NewsBean>()
    override fun initView() {
 //        mPresenter?.testPresenter()
 //        mPresenter?.getTab()
        mPresenter?.getNews()
+       binding.login.setOnClickListener(this)
 
     }
 
@@ -41,16 +44,20 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeCon
     }
 
 
-    private fun setSimpleAdapter(listData: NewsBean) {
-        var homeAdapter = HomeAdapter(listData, this)
+    private fun setSimpleAdapter(listData:NewsBean) {
+        homeAdapter = HomeAdapter(listData)
         binding.recycleView?.adapter = homeAdapter
         //LayoutManger必须设置，否则不显示列表
         binding.recycleView?.layoutManager = LinearLayoutManager(context)
         val dividerItemDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
         binding.recycleView.addItemDecoration(dividerItemDecoration);
+//        homeAdapter.notifyDataSetChanged();
         homeAdapter!!.setOnItemClickListener(object : HomeAdapter.ItemClickListener {
             override fun onItemClickListener(position: Int) {
-               ARouter.getInstance().build(RouterUrl.Web.H5).withString(ActionString.H5URL,listData.datas[position].link).navigation()
+                ARouter.getInstance().build(RouterUrl.Web.H5).withString(
+                    ActionString.H5URL,
+                    listData.datas[position].link
+                ).navigation()
             }
         })
 
@@ -58,6 +65,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeCon
 
     override fun showNews(newsBean: NewsBean) {
         setSimpleAdapter(newsBean)
+    }
+
+    override fun onClick(v: View?) {
+
+        ARouter.getInstance().build(RouterUrl.Login.Login).navigation()
     }
 
 }

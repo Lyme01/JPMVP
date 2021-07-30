@@ -17,4 +17,10 @@ class RouterUrl {
         const val BridgeWebView = model + "BridgeWebView" + ACTIVITY //vm版H5 web
     }
 
+    object Login{
+        private const val model="/login/"
+        const val  Login = model +"login"+ ACTIVITY
+        const val  Register = model +"register"+ ACTIVITY
+    }
+
 }

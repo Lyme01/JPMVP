@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android'
 android {
     defaultConfig {
         if (!isModule.toBoolean()) {
-            applicationId 'com.example.start'
+            applicationId 'com.example.mine'
         }
     }
 }

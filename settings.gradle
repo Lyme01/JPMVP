@@ -1,3 +1,4 @@
+include ':login'
 include ':find'
 include ':mine'
 include ':home'

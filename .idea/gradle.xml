@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/common" />
             <option value="$PROJECT_DIR$/find" />
             <option value="$PROJECT_DIR$/home" />
+            <option value="$PROJECT_DIR$/login" />
             <option value="$PROJECT_DIR$/mine" />
           </set>
         </option>

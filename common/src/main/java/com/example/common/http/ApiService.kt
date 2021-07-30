@@ -4,7 +4,9 @@ package com.example.common.http
 
 import com.example.common.base.BaseBean
 import com.example.common.bean.NewsBean
+import com.example.common.bean.UserBean
 import io.reactivex.Observable
+import okhttp3.RequestBody
 import retrofit2.http.*
 
 interface ApiService {
@@ -14,9 +16,14 @@ interface ApiService {
 //    @GET("/wxarticle/chapters/json")
 //    fun getData(): Observable<BaseBean<List<DataBean>>>
 
-    @GET("/article/list/0/json")
-    fun getNews():Observable<BaseBean<NewsBean>>
-
-//    @GET("/article/listproject/0/json")
-//    fun getTab():Observable<BaseBean<TabBean>>
+    @GET("/article/list/{num}/json")
+    fun getNews(@Path("num") num: Int):Observable<BaseBean<NewsBean>>
+    @FormUrlEncoded
+    @POST("/user/login")
+    fun login(@Field("username") username: String?,
+        @Field("password") password: String? ):Observable<BaseBean<UserBean>>
+//     @POST("user/login")
+//    @FormUrlEncoded
+//    fun login(@Field("username") username: String?,
+//              @Field("password") password: String?): Observable<BaseBean<UserBean?>?>?
 }

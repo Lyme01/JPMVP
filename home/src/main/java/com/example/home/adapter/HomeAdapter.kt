@@ -13,12 +13,11 @@ import com.example.home.R
 import java.text.SimpleDateFormat
 
 
-class HomeAdapter(arrayData: NewsBean, var mContext: HomeFragment): RecyclerView.Adapter<RecyclerView.ViewHolder>(),View.OnClickListener {
+class HomeAdapter(arrayData: NewsBean ): RecyclerView.Adapter<RecyclerView.ViewHolder>(),View.OnClickListener {
 
     private var listData: NewsBean = arrayData
     private var itemClickListener: ItemClickListener? = null
-
-
+    var mContext: HomeFragment?=null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         var view: View =
@@ -32,10 +31,12 @@ class HomeAdapter(arrayData: NewsBean, var mContext: HomeFragment): RecyclerView
 //                it
 //            ) }
             val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-            var data:String=sdf.format(listData.datas[position].shareDate)
+            println("po  $position  --- ${listData.size}")
+//            var data:String=sdf.format(listData.datas[position].shareDate)
+//            holder.date?.text=data
             holder.name?.text = listData.datas[position].title
             holder.author?.text = listData.datas[position].shareUser
-            holder.date?.text=data
+
             holder.itemView.setOnClickListener {
                 itemClickListener!!.onItemClickListener(position)
             }
@@ -45,7 +46,7 @@ class HomeAdapter(arrayData: NewsBean, var mContext: HomeFragment): RecyclerView
 
     }
     override fun getItemCount(): Int {
-        return listData.size
+        return listData.datas.size
     }
 
     class HomeViewHolder(view: View) : RecyclerView.ViewHolder(view) {

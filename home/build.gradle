@@ -5,7 +5,7 @@ android {
     defaultConfig {
 
         if (!isModule.toBoolean()) {
-            applicationId 'com.example.main'
+            applicationId 'com.example.home'
         }
     }
 }
