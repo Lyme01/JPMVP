@@ -16,4 +16,9 @@ class LoginModel {
         )
     }
 
+    fun register(username:String,password:String,repassword:String,) : Observable<BaseBean<UserBean>>? {
+        return  Api.getInstance().getApiService().register(username,password,repassword).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()
+        )
+    }
+
 }

@@ -30,10 +30,10 @@ class HomeAdapter(arrayData: NewsBean ): RecyclerView.Adapter<RecyclerView.ViewH
 //            holder.image?.let { Glide.with(mContext).load(listData.data[position].thumbnail_pic_s).into(
 //                it
 //            ) }
-            val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-            println("po  $position  --- ${listData.size}")
-//            var data:String=sdf.format(listData.datas[position].shareDate)
-//            holder.date?.text=data
+            val sdf = SimpleDateFormat("yyyy-MM-dd")
+
+            var data:String=sdf.format(listData.datas[position].shareDate)
+            holder.date?.text=data
             holder.name?.text = listData.datas[position].title
             holder.author?.text = listData.datas[position].shareUser
 

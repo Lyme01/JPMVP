@@ -20,40 +20,40 @@ import java.util.*
 
  @Route(path = RouterUrl.APP.Tab)
 class MainActivity : BaseActivity<ActivityMainBinding, MainPresenter>(), MainContract.View ,
-    BottomNavView.OnBottomViewItemSelectedListener {
+    BottomNavView.OnBottomViewItemSelectedListener ,HomeFragment.SendListener{
 
     private var fragmentList: List<Fragment>? = null
     private var mTitleList: Array<String>?=null
     private var mSelectedIcon: IntArray?=null
     private var mUnSelectedIcon: IntArray?=null
+     var nickname:String?=null
     override fun getPresenter(): MainPresenter {
         return MainPresenter()
     }
 
 
     override fun initView() {
-
+       nickname=intent.getStringExtra("nickname")
     }
 
 
 
 
-
-    protected override fun setEvents() {
+     protected override fun setEvents() {
        binding.mViewPager.addOnPageChangeListener(object : OnPageChangeListener {
-            override fun onPageScrolled(
-                position: Int,
-                positionOffset: Float,
-                positionOffsetPixels: Int
-            ) {
-            }
+           override fun onPageScrolled(
+               position: Int,
+               positionOffset: Float,
+               positionOffsetPixels: Int
+           ) {
+           }
 
-            override fun onPageSelected(position: Int) {
-                binding.bottomNav.setCurrentItem(position)
-            }
+           override fun onPageSelected(position: Int) {
+               binding.bottomNav.setCurrentItem(position)
+           }
 
-            override fun onPageScrollStateChanged(state: Int) {}
-        })
+           override fun onPageScrollStateChanged(state: Int) {}
+       })
 
     }
 
@@ -90,7 +90,11 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainPresenter>(), MainCon
         binding.bottomNav.setCurrentItem(position)
         binding.mViewPager.setCurrentItem(position, false)
     }
-    }
+
+     override fun getNickname(nickname: String) {
+
+     }
+ }
 
 
 

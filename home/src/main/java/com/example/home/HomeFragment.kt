@@ -1,5 +1,7 @@
 package com.example.home
 
+import android.content.Context
+import android.provider.ContactsContract
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -29,6 +31,12 @@ private const val ARG_PARAM2 = "param2"
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeContract.View , View.OnClickListener {
 
    lateinit var homeAdapter: HomeAdapter
+   var nickname:String?=null
+
+
+    interface SendListener{
+        fun getNickname(nickname: String)
+    }
 
     private val listData: List<NewsBean> = ArrayList<NewsBean>()
    override fun initView() {
@@ -44,7 +52,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeCon
     }
 
 
-    private fun setSimpleAdapter(listData:NewsBean) {
+    private fun setSimpleAdapter(listData: NewsBean) {
         homeAdapter = HomeAdapter(listData)
         binding.recycleView?.adapter = homeAdapter
         //LayoutManger必须设置，否则不显示列表
@@ -70,6 +78,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeCon
     override fun onClick(v: View?) {
 
         ARouter.getInstance().build(RouterUrl.Login.Login).navigation()
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
     }
 
 }
