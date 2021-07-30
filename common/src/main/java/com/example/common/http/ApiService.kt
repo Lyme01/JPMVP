@@ -19,7 +19,7 @@ interface ApiService {
     @GET("/article/list/{num}/json")
     fun getNews(@Path("num") num: Int):Observable<BaseBean<NewsBean>>
     @FormUrlEncoded
-    @POST("/user/login")
+    @POST("/user/login")//
     fun login(@Field("username") username: String?,
         @Field("password") password: String? ):Observable<BaseBean<UserBean>>
 
