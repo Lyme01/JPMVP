@@ -20,7 +20,7 @@ import java.util.*
 
  @Route(path = RouterUrl.APP.Tab)
 class MainActivity : BaseActivity<ActivityMainBinding, MainPresenter>(), MainContract.View ,
-    BottomNavView.OnBottomViewItemSelectedListener ,HomeFragment.SendListener{
+    BottomNavView.OnBottomViewItemSelectedListener {
 
     private var fragmentList: List<Fragment>? = null
     private var mTitleList: Array<String>?=null
@@ -91,9 +91,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainPresenter>(), MainCon
         binding.mViewPager.setCurrentItem(position, false)
     }
 
-     override fun getNickname(nickname: String) {
 
-     }
  }
 
 

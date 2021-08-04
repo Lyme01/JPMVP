@@ -3,6 +3,7 @@ package com.example.common.http
 
 
 import com.example.common.base.BaseBean
+import com.example.common.bean.DataX
 import com.example.common.bean.NewsBean
 import com.example.common.bean.UserBean
 import io.reactivex.Observable
@@ -17,7 +18,7 @@ interface ApiService {
 //    fun getData(): Observable<BaseBean<List<DataBean>>>
 
     @GET("/article/list/{num}/json")
-    fun getNews(@Path("num") num: Int):Observable<BaseBean<NewsBean>>
+    fun getNews(@Path("num") num: Int):Observable<BaseBean<NewsBean<List<DataX>>>>
 
 
     @FormUrlEncoded

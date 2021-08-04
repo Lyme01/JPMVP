@@ -1,8 +1,8 @@
 package com.example.common.bean
 
-data class NewsBean(
+data class NewsBean<T>(
     val curPage: Int,
-    val datas: List<DataX>,
+    val datas: T,
     val offset: Int,
     val over: Boolean,
     val pageCount: Int,
@@ -10,7 +10,7 @@ data class NewsBean(
     val total: Int
 )
 
-data class DataX(
+data class DataX (
     val apkLink: String,
     val audit: Int,
     val author: String,
