@@ -22,5 +22,9 @@ class RouterUrl {
         const val  Login = model +"login"+ ACTIVITY
         const val  Register = model +"register"+ ACTIVITY
     }
+    object Home{
+        private const val model="/home/"
+        const val Search= model+"search"+ ACTIVITY
+    }
 
 }

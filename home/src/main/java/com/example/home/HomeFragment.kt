@@ -1,7 +1,6 @@
 package com.example.home
 
 import android.content.Context
-import android.graphics.Color
 import android.view.View
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
@@ -22,7 +21,6 @@ import com.example.home.adapter.NewsAdapter
 import com.example.home.contract.HomeContract
 import com.example.home.databinding.FragmentHomeBinding
 import com.example.home.presenter.HomePresenter
-import com.jaeger.library.StatusBarUtil
 import com.scwang.smart.refresh.footer.BallPulseFooter
 import com.scwang.smart.refresh.header.BezierRadarHeader
 import com.scwang.smart.refresh.layout.api.RefreshLayout
@@ -46,7 +44,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [HomeFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeContract.View ,View.OnClickListener,
+class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeContract.HomeView ,View.OnClickListener,
     OnItemChildClickListener, OnItemClickListener, OnBannerListener {
 
     private var mHomeAdapter: NewsAdapter? = null
@@ -57,7 +55,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeCon
 
 
    override fun initView() {
-
+       TitleBuilder(this.activity).setTitleText("首页").setRightIco(R.drawable.search).setRightIcoListening(
+           leftReturnListener
+       )
 //       binding.login.setOnClickListener(this)
         //LayoutManger必须设置，否则不显示列表
         binding.recycleView?.layoutManager = LinearLayoutManager(context)
@@ -166,6 +166,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeCon
         var url=urls[position]
         ARouter.getInstance().build(RouterUrl.Web.H5).withString(ActionString.H5URL, url).navigation()
     }
+
+    private val leftReturnListener = View.OnClickListener { ARouter.getInstance().build(RouterUrl.Home.Search).navigation()}
 
 
 }

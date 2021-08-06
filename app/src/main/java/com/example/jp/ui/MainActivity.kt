@@ -37,9 +37,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainPresenter>(), MainCon
 
     override fun initView() {
        nickname=intent.getStringExtra("nickname")
-        StatusBarUtil.setColor(this, getResources().getColor(com.example.common.R.color.c_1B77A8))
+        StatusBarUtil.setColor(this, getResources().getColor(com.example.common.R.color.c_1B77A8),0)
 
-         TitleBuilder(this).setTitleText("测试标题")
     }
 
 

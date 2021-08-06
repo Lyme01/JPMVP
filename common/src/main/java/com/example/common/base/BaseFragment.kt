@@ -1,6 +1,8 @@
 package com.example.common.base
 
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +18,7 @@ import com.dylanc.viewbinding.inflateBindingWithGeneric
 abstract class BaseFragment<VB : ViewBinding, P : BaseContract.BasePresenter> :
     Fragment(),BaseContract.BaseView {
     protected var mPresenter: P? = null
-
+    private var activity: Activity? = null
     private var _binding: VB? = null
     val binding:VB get() = _binding!!
 
@@ -47,6 +49,8 @@ abstract class BaseFragment<VB : ViewBinding, P : BaseContract.BasePresenter> :
 
     }
 
+
+
     override fun onViewCreated(
         view: View,
         savedInstanceState: Bundle?
@@ -62,6 +66,7 @@ abstract class BaseFragment<VB : ViewBinding, P : BaseContract.BasePresenter> :
         super.onDestroyView()
         _binding = null
     }
+
 
     override fun onDestroy() {
         super.onDestroy()

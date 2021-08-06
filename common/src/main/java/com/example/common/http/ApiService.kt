@@ -35,4 +35,10 @@ interface ApiService {
 
     @GET("/banner/json")
     fun getBanner():Observable<BaseBean<List<BannerBean>>>
+
+
+
+    @POST("/article/query/{page}/json")//
+    fun search(@Path("page") page:Int,
+               @Query("k")  word:String ):Observable<BaseBean<NewsBean<List<DataX>>>>
 }

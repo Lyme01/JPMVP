@@ -19,4 +19,8 @@ class HomeModel {
         return Api.getInstance().getApiService().getBanner().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
     }
 
+    fun serach(page:Int,word:String):Observable<BaseBean<NewsBean<List<DataX>>>> {
+        return  Api.getInstance().getApiService().search(page,word).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+    }
+
 }

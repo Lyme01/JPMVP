@@ -4,8 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
-
+    <include layout="@layout/activity_title"/>
 
     <!--下拉刷新组件-->
     <com.scwang.smart.refresh.layout.SmartRefreshLayout
@@ -30,20 +31,11 @@
                     app:image_scale_type="center_crop"
                     app:scroll_time="500" />
 
-                <!--5个大模块布局-->
-                <LinearLayout
-                    android:id="@+id/ll_big_module_fragment_home"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
-                    android:layout_marginTop="15dp"
-                    android:orientation="horizontal" />
-                <!--团购列表-->
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycleView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-
             </LinearLayout>
         </ScrollView>
     </com.scwang.smart.refresh.layout.SmartRefreshLayout>

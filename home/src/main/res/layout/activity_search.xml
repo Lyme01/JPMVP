@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".activity.SearchActivity">
+    <LinearLayout
+        android:background="#1B77A8"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_centerVertical="true"
+                android:visibility="gone"
+                android:id="@+id/title_leftIco"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:background="@drawable/search_sp"
+                android:id="@+id/et_search"
+                android:paddingLeft="@dimen/dp_10"
+                android:layout_centerInParent="true"
+                android:layout_width="250dp"
+                android:layout_height="@dimen/dp_30"/>
+
+            <TextView
+                android:id="@+id/title_rightIco"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/dp_20"
+                android:textSize="@dimen/sp_14"
+                android:layout_marginStart="@dimen/dp_30"
+                android:layout_alignBaseline="@id/et_search"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="26dp"
+                android:text="搜索"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+    </LinearLayout>
+<com.scwang.smart.refresh.layout.SmartRefreshLayout
+    android:id="@+id/refresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</com.scwang.smart.refresh.layout.SmartRefreshLayout>
+</LinearLayout>

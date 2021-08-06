@@ -7,7 +7,7 @@ import com.example.common.bean.NewsBean
 
 
 interface HomeContract :BaseContract {
-    interface View : BaseContract.BaseView {
+    interface HomeView : BaseContract.BaseView {
 //        fun testView(list: List<DataBean>)
 //        fun testTab(tabBean: TabBean)
 //          fun  showNews(newsBean: NewsBean)
@@ -17,13 +17,16 @@ interface HomeContract :BaseContract {
         fun showBanner(banners:List<BannerBean>)
     }
 
+    interface SearchView:BaseContract.BaseView {
+     fun  getSearch(articles: NewsBean<List<DataX>>?)
+    }
+
     interface Presenter  {
-//        fun testPresenter()
-//        fun getTab()
        fun getNews()
         fun loadMore()
         fun reload()
        fun  getBanner()
+       fun search(word:String)
 
     }
 }
