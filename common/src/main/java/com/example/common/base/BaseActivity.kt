@@ -6,6 +6,8 @@ import android.app.Activity
 import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 import com.dylanc.viewbinding.inflateBindingWithGeneric
@@ -40,7 +42,7 @@ abstract class BaseActivity<VB : ViewBinding, P : BaseContract.BasePresenter> : 
         ActivityManager.getInstance().addActivity(weakReference!!.get());
         // 设置要不要显示状态栏
         setStatusShow()
-        StatusBarUtil.setColor(this, getResources().getColor(R.color.colorAccent))
+
         mPresenter = getPresenter()
         mPresenter?.attachView(this)
         binding = this.inflateBindingWithGeneric(layoutInflater)
@@ -60,7 +62,8 @@ abstract class BaseActivity<VB : ViewBinding, P : BaseContract.BasePresenter> : 
         if (isShowStatus==false){
             getWindow().setFlags(
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            );
             /**标题是属于View的，所以窗口所有的修饰部分被隐藏后标题依然有效,需要去掉标题**/
             requestWindowFeature(Window.FEATURE_NO_TITLE);
 
@@ -88,5 +91,8 @@ abstract class BaseActivity<VB : ViewBinding, P : BaseContract.BasePresenter> : 
         System.gc()
 
     }
+
+
+
 
 }

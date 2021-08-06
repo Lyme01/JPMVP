@@ -3,6 +3,7 @@ package com.example.home.presenter
 
 import com.example.common.base.BaseBean
 import com.example.common.base.BasePresenter
+import com.example.common.bean.BannerBean
 import com.example.common.bean.DataX
 import com.example.common.bean.NewsBean
 import com.example.common.http.BaseResourceObserver
@@ -63,9 +64,20 @@ class HomePresenter : BasePresenter<HomeContract.View>(),
         })
     }
 
+    override fun getBanner() {
+        model.getBanner().subscribe(object :
+            BaseResourceObserver<BaseBean<List<BannerBean>>>() {
+            override fun onSubscribe(d: Disposable) {
+
+            }
+
+            override fun onNext(t: BaseBean<List<BannerBean>>) {
+                t.data?.let { mView?.showBanner(it) }
+            }
 
 
-
+        })
+    }
 
 
 }

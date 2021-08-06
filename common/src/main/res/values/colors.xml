@@ -9,6 +9,7 @@
     <!--状态栏的背景色-->
     <color name="colorPrimaryDark">#ffffff</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="c_1B77A8"> #1B77A8</color>
     <color name="selected_layout">#f1f8fe</color>
     <color name="black">#000000</color>
     <color name="text_main">#303030</color>
@@ -19,4 +20,7 @@
     <color name="common_blue">#007aff</color>
     <color name="common_gray">#e0e7ea</color>
     <color name="search_bg">#f5f6fa</color>
+    <color name="colorCard">#FFFFFF</color>
+    <color name="colorText">#323232</color>
+    <color name="main_color">#3399ff</color>
 </resources>

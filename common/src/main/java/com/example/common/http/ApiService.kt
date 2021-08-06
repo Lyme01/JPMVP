@@ -3,6 +3,7 @@ package com.example.common.http
 
 
 import com.example.common.base.BaseBean
+import com.example.common.bean.BannerBean
 import com.example.common.bean.DataX
 import com.example.common.bean.NewsBean
 import com.example.common.bean.UserBean
@@ -31,4 +32,7 @@ interface ApiService {
     fun register(@Field("username") username: String?,
                  @Field("password") password: String?,@Field("repassword") repassword: String?,):Observable<BaseBean<UserBean>>
 
+
+    @GET("/banner/json")
+    fun getBanner():Observable<BaseBean<List<BannerBean>>>
 }

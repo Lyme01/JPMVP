@@ -36,6 +36,7 @@ abstract class BaseFragment<VB : ViewBinding, P : BaseContract.BasePresenter> :
 
 
     protected abstract fun initView()
+    protected abstract fun initDatas()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +53,7 @@ abstract class BaseFragment<VB : ViewBinding, P : BaseContract.BasePresenter> :
     ) {
         super.onViewCreated(view, savedInstanceState)
         initView()
+        initDatas()
     }
 
     protected abstract fun getPresenter(): P

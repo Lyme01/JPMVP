@@ -1,39 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-   >
-<Button
-    android:id="@+id/login"
-    android:text="登录"
-    android:onClick="onClick"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"/>
-<!--    <TextView-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:id="@+id/nickname"-->
-<!--        android:textSize="@dimen/sp_24"-->
-<!--        android:layout_marginLeft="@dimen/dp_200"-->
-<!--        android:text="用户名"/>-->
+    android:background="@color/white"
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
 
-<com.scwang.smart.refresh.layout.SmartRefreshLayout
-    android:id="@+id/refresh"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <com.scwang.smart.refresh.header.ClassicsHeader
+    <!--下拉刷新组件-->
+    <com.scwang.smart.refresh.layout.SmartRefreshLayout
+        android:id="@+id/refresh"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycleView"
-        android:layout_marginTop="@dimen/dp_20"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-    <com.scwang.smart.refresh.footer.ClassicsFooter
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-</com.scwang.smart.refresh.layout.SmartRefreshLayout>
-</FrameLayout>
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <!--Banner轮播条-->
+                <com.youth.banner.Banner
+                    android:id="@+id/mBanner"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    app:image_scale_type="center_crop"
+                    app:scroll_time="500" />
+
+                <!--5个大模块布局-->
+                <LinearLayout
+                    android:id="@+id/ll_big_module_fragment_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal" />
+                <!--团购列表-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycleView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+        </ScrollView>
+    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+</LinearLayout>

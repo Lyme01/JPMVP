@@ -1,6 +1,7 @@
 package com.example.home.contract
 
 import com.example.common.base.BaseContract
+import com.example.common.bean.BannerBean
 import com.example.common.bean.DataX
 import com.example.common.bean.NewsBean
 
@@ -13,6 +14,7 @@ interface HomeContract :BaseContract {
         fun showNews(articles: NewsBean<List<DataX>>?)
         fun loadArticle(articles: NewsBean<List<DataX>>?)
         fun reloadArticle(articles: NewsBean<List<DataX>>?)
+        fun showBanner(banners:List<BannerBean>)
     }
 
     interface Presenter  {
@@ -21,6 +23,7 @@ interface HomeContract :BaseContract {
        fun getNews()
         fun loadMore()
         fun reload()
+       fun  getBanner()
 
     }
 }

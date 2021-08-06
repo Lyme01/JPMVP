@@ -1,6 +1,7 @@
 package com.example.common.model
 
 import com.example.common.base.BaseBean
+import com.example.common.bean.BannerBean
 import com.example.common.bean.DataX
 import com.example.common.bean.NewsBean
 import com.example.common.http.Api
@@ -12,6 +13,10 @@ class HomeModel {
 
     fun getNews(num:Int) : Observable<BaseBean<NewsBean<List<DataX>>>> {
         return  Api.getInstance().getApiService().getNews(num).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+    }
+//
+    fun getBanner(): Observable<BaseBean<List<BannerBean>>> {
+        return Api.getInstance().getApiService().getBanner().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
     }
 
 }

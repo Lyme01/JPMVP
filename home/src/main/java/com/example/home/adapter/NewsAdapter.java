@@ -28,9 +28,9 @@ public class NewsAdapter extends BaseQuickAdapter<DataX, BaseViewHolder> {
         title = title.replaceAll("&ldquo;","“").replaceAll("&rdquo;","”");
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         String data=formatter.format(item.getShareDate());
-        helper.setText(R.id.author,author)
+        helper.setText(R.id.item_article_author,author)
                 .setText(R.id.title,title)
-                .setText(R.id.date,data);
+                .setText(R.id.item_article_time,data);
     }
 
 }

@@ -1,6 +1,7 @@
 package com.example.jp.ui
 
 
+import android.app.Activity
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
@@ -8,6 +9,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.common.adapter.CommonFragmentPagerAdapter
 import com.example.common.arouter.RouterUrl
 import com.example.common.base.BaseActivity
+import com.example.common.util.TitleBuilder
 import com.example.common.view.BottomNavView
 import com.example.find.FindFragment
 import com.example.home.HomeFragment
@@ -16,6 +18,7 @@ import com.example.jp.contract.MainContract
 import com.example.jp.databinding.ActivityMainBinding
 import com.example.jp.presenter.MainPresenter
 import com.example.mine.MineFragment
+import com.jaeger.library.StatusBarUtil
 import java.util.*
 
  @Route(path = RouterUrl.APP.Tab)
@@ -34,6 +37,9 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainPresenter>(), MainCon
 
     override fun initView() {
        nickname=intent.getStringExtra("nickname")
+        StatusBarUtil.setColor(this, getResources().getColor(com.example.common.R.color.c_1B77A8))
+
+         TitleBuilder(this).setTitleText("测试标题")
     }
 
 
