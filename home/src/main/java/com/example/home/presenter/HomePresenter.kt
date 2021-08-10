@@ -6,6 +6,7 @@ import com.example.common.base.BaseContract
 import com.example.common.base.BasePresenter
 import com.example.common.bean.BannerBean
 import com.example.common.bean.DataX
+import com.example.common.bean.HotKeyBean
 import com.example.common.bean.NewsBean
 import com.example.common.http.BaseResourceObserver
 import com.example.common.model.HomeModel
@@ -111,6 +112,57 @@ class HomePresenter : BasePresenter<BaseContract.BaseView>(),
         })
     }
 
+    override fun removeArticle(position: Int, data: DataX) {
+        model.removeArticle(data.id).subscribe(object :
+            BaseResourceObserver<BaseBean<NewsBean<List<DataX>>>>(){
+            override fun onSubscribe(d: Disposable) {
+
+            }
+
+            override fun onNext(t: BaseBean<NewsBean<List<DataX>>>) {
+            data.collect=false
+                if (mView is HomeContract.HomeView) {
+                    t.data?.let { (mView as HomeContract.HomeView).removeArticleSuccess(position) }
+                }
+
+            }
+
+        })
+    }
+
+    override fun addArticle(position: Int, data: DataX) {
+        model.addArticle(data.id).subscribe(object :
+            BaseResourceObserver<BaseBean<NewsBean<List<DataX>>>>(){
+            override fun onSubscribe(d: Disposable) {
+
+            }
+
+            override fun onNext(t: BaseBean<NewsBean<List<DataX>>>) {
+                data.collect=true
+                if (mView is HomeContract.HomeView) {
+                    t.data?.let { (mView as HomeContract.HomeView).addArticleSuccess(position)
+                    }
+                }
+
+            }
+
+        })
+    }
+
+    override fun hotKey() {
+        model.hotKey().subscribe(object :BaseResourceObserver<BaseBean<List<HotKeyBean>>>(){
+            override fun onSubscribe(d: Disposable) {
+
+            }
+
+            override fun onNext(t: BaseBean<List<HotKeyBean>>) {
+                if (mView is HomeContract.SearchView) {
+                    t.data?.let { (mView as HomeContract.SearchView).getHotKey(it) }
+                }
+            }
+
+        })
+    }
 
 }
 

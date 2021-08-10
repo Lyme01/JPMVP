@@ -1,6 +1,5 @@
 package com.example.home.adapter;
 
-import android.text.TextUtils;
 
 import androidx.annotation.Nullable;
 
@@ -16,9 +15,13 @@ import java.util.List;
 
 
 public class NewsAdapter extends BaseQuickAdapter<DataX, BaseViewHolder> {
-
+    private boolean isCollected = false;
     public NewsAdapter(int layoutResId, @Nullable List<DataX> data) {
         super(layoutResId, data);
+    }
+
+    public void setCollected(boolean collected) {
+        isCollected = collected;
     }
 
     @Override
@@ -31,6 +34,12 @@ public class NewsAdapter extends BaseQuickAdapter<DataX, BaseViewHolder> {
         helper.setText(R.id.item_article_author,author)
                 .setText(R.id.title,title)
                 .setText(R.id.item_article_time,data);
+
+        if (item.getCollect()|| isCollected) {
+                    helper.setImageResource(R.id.item_article_like, R.drawable.icon_like_article_select);
+        } else {
+            helper.setImageResource(R.id.item_article_like, R.drawable.icon_like_article_not_selected);
+        }
     }
 
 }

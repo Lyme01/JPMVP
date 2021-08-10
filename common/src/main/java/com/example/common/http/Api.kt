@@ -1,7 +1,13 @@
 package com.example.common.http
 
 
+import android.content.Context
 import android.util.Log
+import com.example.common.base.BaseApplication
+import com.franmontiel.persistentcookiejar.ClearableCookieJar
+import com.franmontiel.persistentcookiejar.PersistentCookieJar
+import com.franmontiel.persistentcookiejar.cache.SetCookieCache
+import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
 import com.google.gson.GsonBuilder
 import com.google.gson.TypeAdapter
 import com.google.gson.stream.JsonReader
@@ -23,7 +29,7 @@ class Api {
         @Volatile
         private var instance: Api? = null
         private var service: ApiService? = null
-
+        var mContext: Context? = null
         //访问超时
         private const val TIMEOUT: Long = 60
 
@@ -92,6 +98,10 @@ class Api {
      *
      * @return
      */
+    var cookieJar: ClearableCookieJar? = PersistentCookieJar(
+        SetCookieCache(),
+        SharedPrefsCookiePersistor(BaseApplication.appContext))
+
     private fun getOkHttpClient(): OkHttpClient{
         // Retrofit是基于OkHttpClient的，可以创建一个OkHttpClient进行一些配置
         return OkHttpClient.Builder() //打印接口信息，方便接口调试
@@ -100,7 +110,10 @@ class Api {
             }).setLevel(HttpLoggingInterceptor.Level.BODY))
             .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
             .addInterceptor(RqInterceptor())
+//            .addInterceptor(AddCookiesInterceptor())
+//            .addInterceptor(SaveCookiesInterceptor())
             .readTimeout(TIMEOUT, TimeUnit.SECONDS)
+            .cookieJar(cookieJar)
             .build()
     }
 

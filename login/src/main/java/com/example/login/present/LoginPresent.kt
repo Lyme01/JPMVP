@@ -1,7 +1,5 @@
 package com.example.login.present
 
-import android.util.Log
-import android.widget.Toast
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.common.arouter.RouterUrl
 import com.example.common.base.BaseBean
@@ -14,12 +12,16 @@ import io.reactivex.disposables.Disposable
 
 class LoginPresent: BasePresenter<LoginContract.View>(), LoginContract.Presenter{
     var model = LoginModel()
-    override fun login(username:String,password:String) {
-        model.login(username,password)?.subscribe(object :
+    override fun login(username: String, password: String) {
+        model.login(username, password)?.subscribe(object :
             BaseResourceObserver<BaseBean<UserBean>>() {
             override fun onNext(t: BaseBean<UserBean>) {
                 if (t.errorCode == 0) {
-                    ARouter.getInstance().build(RouterUrl.APP.Tab).withString("nickname",t.data?.nickname).navigation()
+                    ARouter.getInstance().build(RouterUrl.APP.Tab).withString(
+                        "nickname",
+                        t.data?.nickname
+                    ).navigation()
+                    setLogin(true)
                 } else {
                     mView?.showLogin(t.errorMsg)
                 }
@@ -33,27 +35,24 @@ class LoginPresent: BasePresenter<LoginContract.View>(), LoginContract.Presenter
     }
 
     override fun register(username: String, password: String, repassword: String) {
-      model.register(username,password,repassword)?.subscribe(object :BaseResourceObserver<BaseBean<UserBean>>(){
+      model.register(username, password, repassword)?.subscribe(object :
+          BaseResourceObserver<BaseBean<UserBean>>() {
           override fun onNext(t: BaseBean<UserBean>) {
-           if (t.errorCode==0){
-               ARouter.getInstance().build(RouterUrl.APP.Tab).navigation()
-           }else{
-               mView?.showLogin(t.errorMsg)
-           }
-
+              if (t.errorCode == 0) {
+                  ARouter.getInstance().build(RouterUrl.APP.Tab).navigation()
+              } else {
+                  mView?.showLogin(t.errorMsg)
+              }
           }
 
           override fun onSubscribe(d: Disposable) {
 
           }
-
-
-
       }
-
 
       )
     }
+
 
 
 

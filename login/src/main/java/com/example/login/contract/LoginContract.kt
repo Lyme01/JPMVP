@@ -14,5 +14,6 @@ class LoginContract:BaseContract {
         /**登录*/
         fun login(username:String,password:String)
         fun register(username: String,password: String,repassword:String)
+
     }
 }

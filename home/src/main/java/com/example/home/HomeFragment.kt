@@ -3,6 +3,7 @@ package com.example.home
 import android.content.Context
 import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.launcher.ARouter
@@ -16,6 +17,8 @@ import com.example.common.base.BaseFragment
 import com.example.common.bean.BannerBean
 import com.example.common.bean.DataX
 import com.example.common.bean.NewsBean
+import com.example.common.util.Constant
+import com.example.common.util.SpfUtils
 import com.example.common.util.TitleBuilder
 import com.example.home.adapter.NewsAdapter
 import com.example.home.contract.HomeContract
@@ -45,7 +48,8 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeContract.HomeView ,View.OnClickListener,
-    OnItemChildClickListener, OnItemClickListener, OnBannerListener {
+    OnItemChildClickListener,
+    OnItemClickListener, OnBannerListener {
 
     private var mHomeAdapter: NewsAdapter? = null
 //    private var mArticleBeans= mutableListOf<DataX>()
@@ -65,6 +69,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeCon
        binding.recycleView?.adapter =mHomeAdapter
       mHomeAdapter!!.setOnItemChildClickListener(this)
       mHomeAdapter!!.setOnItemClickListener(this)
+      mHomeAdapter!!.addChildClickViewIds(R.id.item_article_like)
 //    val dividerItemDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
 //    binding.recycleView.addItemDecoration(dividerItemDecoration);
      binding.refresh.setRefreshHeader(BezierRadarHeader(context).setEnableHorizontalDrag(true))
@@ -143,10 +148,39 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeCon
 
     }
 
+    override fun addArticleSuccess(position: Int) {
+        Toast.makeText(context, "收藏成功", Toast.LENGTH_SHORT).show()
+    }
+
+
+
+    override fun removeArticleSuccess(position: Int) {
+        Toast.makeText(context, "已取消收藏", Toast.LENGTH_SHORT).show()
+    }
 
 
     override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
+      when(view.id){
+          R.id.item_article_like -> {
+              //是否登录
+              val isLogin: Boolean = isLogin()
+              if (!isLogin) {
+                  ARouter.getInstance().build(RouterUrl.Login.Login).navigation()
+              } else {
+                  val data: DataX? = mHomeAdapter?.data?.get(position)
+                  if (data?.collect!!) {
+                      mPresenter?.removeArticle(position, data)
+                  } else {
+                      mPresenter?.addArticle(position, data)
+                  }
+              }
+          }
 
+      }
+    }
+
+    private fun isLogin(): Boolean {
+     return SpfUtils.get(Constant.KEY_IS_LOGIN, false);
     }
 
     override fun onItemClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {

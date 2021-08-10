@@ -1,5 +1,7 @@
 package com.example.common.base
 
+import com.example.common.util.Constant
+import com.example.common.util.SpfUtils
 import io.reactivex.disposables.Disposable
 import java.lang.ref.WeakReference
 import java.util.*
@@ -7,7 +9,7 @@ import java.util.*
 /**
  * Created by le on 2018/8/9.
  */
-open class BasePresenter<V:BaseContract.BaseView> : BaseContract.BasePresenter {
+open class BasePresenter<V : BaseContract.BaseView> : BaseContract.BasePresenter {
     protected var mView: V? = null
     private var weakView: WeakReference<BaseContract.BaseView>? = null
     protected var listReqs: MutableList<Disposable> =
@@ -46,6 +48,34 @@ open class BasePresenter<V:BaseContract.BaseView> : BaseContract.BasePresenter {
      */
     protected fun addReqs(disposable: Disposable) {
         listReqs.add(disposable)
+    }
+
+    /**
+     * 是否已经登录
+     * @return
+     */
+    open fun isLogin(): Boolean {
+        return SpfUtils.get(Constant.KEY_IS_LOGIN, false)
+    }
+
+    open fun setLogin(isLogin: Boolean) {
+        SpfUtils.put(Constant.KEY_IS_LOGIN, isLogin)
+    }
+
+    open fun getUserName(): String? {
+        return SpfUtils.get(Constant.KEY_USERNAME, "")
+    }
+
+    open fun setUserName(userName: String?) {
+        SpfUtils.put(Constant.KEY_USERNAME, userName)
+    }
+
+    open fun getPassword(): String? {
+        return SpfUtils.get(Constant.KEY_PASSWORD, "")
+    }
+
+    open fun setPassword(password: String?) {
+        SpfUtils.put(Constant.KEY_PASSWORD, password)
     }
 
 }
