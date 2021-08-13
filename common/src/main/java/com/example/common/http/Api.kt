@@ -109,7 +109,7 @@ class Api {
                 Log.e("zcb", "OkHttp====Message:$message");
             }).setLevel(HttpLoggingInterceptor.Level.BODY))
             .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
-            .addInterceptor(RqInterceptor())
+//            .addInterceptor(RqInterceptor())
 //            .addInterceptor(AddCookiesInterceptor())
 //            .addInterceptor(SaveCookiesInterceptor())
             .readTimeout(TIMEOUT, TimeUnit.SECONDS)
@@ -120,29 +120,29 @@ class Api {
     /**
      * 请求拦截器
      */
-    private class RqInterceptor : Interceptor {
-        @Throws(IOException::class)
-        override fun intercept(chain: Interceptor.Chain): Response {
-            var request = chain.request()
-                .newBuilder()
-                .addHeader("Connection", "Keep-Alive")
-                .addHeader("Accept-Language", "zh-CN,en-US;q=0.9")
-                .addHeader("Content-Type", "application/x-www-form-urlencoded")
-                .build()
-            val response = chain.proceed(request)
-            //这里不能打印 再次调用response.body.string 会导致流关闭
-            val body = response.peekBody(1024 * 1024.toLong())
-            Log.e("TAG", "response: $response")
-            if (body != null) {
-                val json = body.string()
-                Log.e(response.code().toString() + "  response ---", json)
-                Log.e("TAG", response.body().toString())
-                if (response.code() != 200 ) {
-                    throw ApiException(Throwable(json), response.code())
-                }
-            }
-            return response
-        }
-    }
+//    private class RqInterceptor : Interceptor {
+//        @Throws(IOException::class)
+//        override fun intercept(chain: Interceptor.Chain): Response {
+//            var request = chain.request()
+//                .newBuilder()
+//                .addHeader("Connection", "Keep-Alive")
+//                .addHeader("Accept-Language", "zh-CN,en-US;q=0.9")
+//                .addHeader("Content-Type", "application/x-www-form-urlencoded")
+//                .build()
+//            val response = chain.proceed(request)
+//            //这里不能打印 再次调用response.body.string 会导致流关闭
+//            val body = response.peekBody(1024 * 1024.toLong())
+//            Log.e("TAG", "response: $response")
+//            if (body != null) {
+//                val json = body.string()
+//                Log.e(response.code().toString() + "  response ---", json)
+//                Log.e("TAG", response.body().toString())
+//                if (response.code() != 200 ) {
+//                    throw ApiException(Throwable(json), response.code())
+//                }
+//            }
+//            return response
+//        }
+//    }
 
 }

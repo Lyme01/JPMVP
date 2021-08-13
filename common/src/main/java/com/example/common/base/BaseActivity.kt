@@ -47,6 +47,7 @@ abstract class BaseActivity<VB : ViewBinding, P : BaseContract.BasePresenter> : 
         mPresenter?.attachView(this)
         binding = this.inflateBindingWithGeneric(layoutInflater)
         setContentView(binding.root)
+        StatusBarUtil.setColor(this, getResources().getColor(com.example.common.R.color.c_1B77A8),0)
         initView()
         initDatas()
         setEvents()

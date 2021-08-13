@@ -25,6 +25,7 @@ class RouterUrl {
     object Home{
         private const val model="/home/"
         const val Search= model+"search"+ ACTIVITY
+        const val Detail= model+"detail"+ ACTIVITY
     }
 
 }

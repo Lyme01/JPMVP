@@ -40,6 +40,12 @@ public class TitleBuilder {
         return this;
     }
 
+    public TitleBuilder setTitleColor(int color){
+            text.setTextColor(color);
+        return this;
+    }
+
+
     /**
      * 用于设置标题栏左边要显示的图片
      * */

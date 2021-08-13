@@ -91,8 +91,8 @@ class HomePresenter : BasePresenter<BaseContract.BaseView>(),
         })
     }
 
-    override fun search(word:String) {
-        model.serach(mCurNum,word).subscribe(object :
+    override fun search(page:Int,word:String,isRefresh:Boolean) {
+        model.serach(page,word).subscribe(object :
             BaseResourceObserver<BaseBean<NewsBean<List<DataX>>>>() {
             override fun onSubscribe(d: Disposable) {
 
@@ -101,8 +101,8 @@ class HomePresenter : BasePresenter<BaseContract.BaseView>(),
 
             override fun onNext(t: BaseBean<NewsBean<List<DataX>>>) {
 
-                if (mView is HomeContract.SearchView) {
-                    (mView as HomeContract.SearchView).getSearch(t.data)
+                if (mView is HomeContract.SearchDetailView) {
+                    (mView as HomeContract.SearchDetailView).getSearchData(t.data!!.pageCount,t.data,isRefresh)
                 }
 //              mView?.showNews(t.data)
 //              t.data?.let { mView?.showNews(it) }

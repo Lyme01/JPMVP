@@ -3,8 +3,11 @@
     package="com.example.home">
 
     <application>
-        <activity android:name=".activity.SearchActivity"
+        <activity android:name=".activity.SearchDeatilActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".activity.SearchActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

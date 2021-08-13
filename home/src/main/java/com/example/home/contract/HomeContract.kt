@@ -22,8 +22,14 @@ interface HomeContract :BaseContract {
     }
 
     interface SearchView:BaseContract.BaseView {
-     fun  getSearch(articles: NewsBean<List<DataX>>?)
-     fun  getHotKey(hotKeys:List<HotKeyBean>)
+     fun  getHotKey(hotKeys: List<HotKeyBean>)
+    }
+
+    interface SearchDetailView:BaseContract.BaseView {
+        fun  getSearch(articles: NewsBean<List<DataX>>?)
+        fun addArticleSuccess(position: Int)
+        fun removeArticleSuccess(position: Int)
+        fun getSearchData(maxPage: Int, datas: NewsBean<List<DataX>>?, isRefresh: Boolean)
     }
 
     interface Presenter  {
@@ -31,7 +37,7 @@ interface HomeContract :BaseContract {
        fun loadMore()
        fun reload()
        fun  getBanner()
-       fun search(word: String)
+       fun search(page: Int, word: String, isRefresh: Boolean)
        fun removeArticle(position: Int, data: DataX)
        fun addArticle(position: Int, data: DataX)
        fun hotKey()
