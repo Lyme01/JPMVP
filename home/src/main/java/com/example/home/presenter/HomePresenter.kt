@@ -38,7 +38,7 @@ class HomePresenter : BasePresenter<BaseContract.BaseView>(),
       })
     }
 
-    override fun loadMore() {
+    override fun loadMore() {//加载更多
         mCurNum++
         model.getNews(mCurNum).subscribe(object :
             BaseResourceObserver<BaseBean<NewsBean<List<DataX>>>>() {
