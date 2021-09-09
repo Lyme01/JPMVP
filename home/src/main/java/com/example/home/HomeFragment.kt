@@ -1,6 +1,7 @@
 package com.example.home
 
 import android.content.Context
+import android.content.Intent
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
@@ -14,9 +15,11 @@ import com.chad.library.adapter.base.listener.OnItemClickListener
 import com.example.common.arouter.ActionString
 import com.example.common.arouter.RouterUrl
 import com.example.common.base.BaseFragment
+import com.example.common.base.BaseWebActivity
 import com.example.common.bean.BannerBean
 import com.example.common.bean.DataX
 import com.example.common.bean.NewsBean
+import com.example.common.bean.WebBean
 import com.example.common.util.Constant
 import com.example.common.util.SpfUtils
 import com.example.common.util.TitleBuilder
@@ -185,8 +188,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeCon
 
     override fun onItemClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
 //       var url=mArticleBeans[position].link
-        var url =mHomeAdapter?.data?.get(position)?.link
-        ARouter.getInstance().build(RouterUrl.Web.H5).withString(ActionString.H5URL, url).navigation()
+        var webBean=WebBean()
+        webBean.id= mHomeAdapter?.data?.get(position)?.id!!
+        webBean.isCollect=mHomeAdapter?.data?.get(position)?.collect!!
+        webBean.position=position
+        webBean.url=mHomeAdapter?.data?.get(position)?.link!!
+        webBean.title=mHomeAdapter?.data?.get(position)?.title
+        ARouter.getInstance().build(RouterUrl.Web.H5).withSerializable(ActionString.H5URL, webBean).navigation()
     }
 
     //自定义的图片加载器

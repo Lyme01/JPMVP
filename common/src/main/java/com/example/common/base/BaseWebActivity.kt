@@ -14,19 +14,22 @@ import android.widget.Toast
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.common.arouter.ActionString
 import com.example.common.arouter.RouterUrl
+import com.example.common.bean.WebBean
 import com.example.common.databinding.ActivityBaseWebBinding
+import com.example.common.util.TitleBuilder
 
 @Route(path = RouterUrl.Web.H5)
 class BaseWebActivity : BaseActivity<ActivityBaseWebBinding, BaseViewPresenter>() {
-      private var url:String?=null
+      private var bean=WebBean()
     override fun getPresenter(): BaseViewPresenter {
         return BaseViewPresenter()
     }
 
 
     override fun initView() {
-         url=intent?.getStringExtra(ActionString.H5URL)
-         url?.let { binding.webview.loadUrl(it) }//加载url
+         bean= intent?.getSerializableExtra(ActionString.H5URL) as WebBean
+         TitleBuilder(this@BaseWebActivity).setTitleText(bean.title)
+         bean?.url?.let { binding.webview.loadUrl(it) }//加载url
          binding.webview.addJavascriptInterface(this, "android");//添加js监听 这样html就能调用客户端
         binding.webview.webChromeClient = webChromeClient;
         binding.webview.webViewClient = webViewClient;
@@ -101,6 +104,7 @@ class BaseWebActivity : BaseActivity<ActivityBaseWebBinding, BaseViewPresenter>(
         override fun onReceivedTitle(view: WebView?, title: String) {
             super.onReceivedTitle(view, title)
             Log.i("ansen", "网页标题:$title")
+
         }
 
         //加载进度回调

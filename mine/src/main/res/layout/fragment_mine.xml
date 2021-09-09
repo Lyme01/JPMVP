@@ -1,15 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-   >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/login"
+    android:orientation="vertical">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:background="@color/main_color"
+    android:layout_height="250dp">
+
+     <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:id="@+id/person_name"
+         android:layout_marginTop="@dimen/dp_10"
+         android:textSize="@dimen/sp_20"
+         android:drawableTop="@mipmap/person"
+         android:drawablePadding="@dimen/dp_10"
+         app:layout_constraintTop_toTopOf="parent"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+         tools:text="9354728021"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycle"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_mine_fragment" />
+        android:layout_height="wrap_content"/>
 
-</FrameLayout>
+    <Button
+        android:id="@+id/loginout"
+        android:background="@color/main_color"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dp_25"
+        android:text="退出登录"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+</LinearLayout>

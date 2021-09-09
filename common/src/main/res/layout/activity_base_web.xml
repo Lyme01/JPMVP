@@ -3,9 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+    <include layout="@layout/activity_title" />
 
     <WebView
         android:id="@+id/webview"
+        android:layout_marginTop="@dimen/dp_50"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
@@ -15,6 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="3dip"
         android:max="100"
+        android:layout_marginTop="50dp"
         android:progress="0"
         android:visibility="gone"/>
 </FrameLayout>

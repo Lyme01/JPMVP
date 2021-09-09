@@ -4,6 +4,7 @@ import com.example.common.base.BaseBean
 import com.example.common.base.BaseContract
 import com.example.common.base.BasePresenter
 import com.example.common.bean.UserBean
+import com.example.common.bean.UserInfoBean
 import com.example.common.http.Api
 import com.example.common.http.BaseResourceObserver
 import com.example.mine.contract.MineContract
@@ -28,4 +29,19 @@ class MinePresenter:BasePresenter<MineContract.MineView>(),MineContract.MinePres
 
         })
     }
-}
+
+    override fun getUserInfo() {
+        Api.getInstance().getApiService().getUserInfo().subscribeOn(Schedulers.io()).observeOn(
+            AndroidSchedulers.mainThread()).subscribe(object : BaseResourceObserver<BaseBean<UserInfoBean>>() {
+            override fun onSubscribe(d: Disposable) {
+
+            }
+
+            override fun onNext(t: BaseBean<UserInfoBean>) {
+                t.data?.let { mView?.getUserInfo(it) }
+            }
+
+        })
+        }
+
+    }

@@ -40,6 +40,12 @@ interface ApiService {
     @GET("user/logout/json")
     fun logout(): Observable<BaseBean<UserBean>>
 
+    /**
+     * 个人信息
+     */
+    @GET("user/lg/userinfo/json")
+    fun getUserInfo():Observable<BaseBean<UserInfoBean>>
+
     @GET("/banner/json")
     fun getBanner():Observable<BaseBean<List<BannerBean>>>
 
