@@ -56,8 +56,9 @@ abstract class BaseFragment<VB : ViewBinding, P : BaseContract.BasePresenter> :
         savedInstanceState: Bundle?
     ) {
         super.onViewCreated(view, savedInstanceState)
-        initView()
         initDatas()
+        initView()
+
     }
 
     protected abstract fun getPresenter(): P
