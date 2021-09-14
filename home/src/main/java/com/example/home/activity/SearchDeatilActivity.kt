@@ -46,7 +46,10 @@ class SearchDeatilActivity : BaseActivity<ActivitySearchDeatilBinding, HomePrese
 
 
         binding.recycleView?.layoutManager = LinearLayoutManager(this)
-        mHomeAdapter = NewsAdapter(R.layout.item_home, mArticleDatas)
+        mHomeAdapter = NewsAdapter(
+            R.layout.item_home,
+            mArticleDatas
+        )
         mHomeAdapter!!.setOnItemChildClickListener(this)
         mHomeAdapter!!.setOnItemClickListener(this)
         binding.recycleView?.adapter =mHomeAdapter

@@ -122,7 +122,7 @@ class HomePresenter : BasePresenter<BaseContract.BaseView>(),
             override fun onNext(t: BaseBean<NewsBean<List<DataX>>>) {
             data.collect=false
                 if (mView is HomeContract.HomeView) {
-                    t.data?.let { (mView as HomeContract.HomeView).removeArticleSuccess(position) }
+                   data?.let { (mView as HomeContract.HomeView).removeArticleSuccess(position,data) }
                 }
 
             }
@@ -138,10 +138,10 @@ class HomePresenter : BasePresenter<BaseContract.BaseView>(),
             }
 
             override fun onNext(t: BaseBean<NewsBean<List<DataX>>>) {
-                data.collect=true
+
                 if (mView is HomeContract.HomeView) {
-                    t.data?.let { (mView as HomeContract.HomeView).addArticleSuccess(position)
-                    }
+                    data.collect=true
+                    (mView as HomeContract.HomeView).addArticleSuccess(position,data)
                 }
 
             }

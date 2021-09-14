@@ -1,7 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/JPMVP/common/src/main/res/layout/item_home.xml" value="0.178125" />
+        <entry key="..\:/JPMVP/common/src/main/res/layout/layout_home.xml" value="0.178125" />
+        <entry key="..\:/JPMVP/home/src/main/res/layout/item_home.xml" value="0.13043478260869565" />
+        <entry key="..\:/JPMVP/mine/src/main/res/drawable/above_layout.xml" value="0.30925925925925923" />
+        <entry key="..\:/JPMVP/mine/src/main/res/drawable/icon_like_article_select.xml" value="0.19427083333333334" />
+        <entry key="..\:/JPMVP/mine/src/main/res/layout/activity_collect.xml" value="0.178125" />
+        <entry key="..\:/JPMVP/mine/src/main/res/layout/activity_setting.xml" value="0.3078125" />
+        <entry key="..\:/JPMVP/mine/src/main/res/layout/fragment_mine.xml" value="0.22" />
+        <entry key="..\:/JPMVP/mine/src/main/res/layout/item_home.xml" value="0.178125" />
+        <entry key="..\:/JPMVP/mine/src/main/res/layout/item_list.xml" value="0.17198581560283688" />
+        <entry key="..\:/JPMVP/mine/src/main/res/layout/item_mine.xml" value="0.17198581560283688" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectPlainTextFileTypeManager">
-    <file url="file://$PROJECT_DIR$/mine/src/main/java/com/example/mine/adapter/66.kt" />
+    <file url="file://$PROJECT_DIR$/common/src/main/res/drawable/ic_launcher_background.xml" />
+    <file url="file://$PROJECT_DIR$/common/src/main/res/drawable/icon_like_article_not_selected.xml" />
+    <file url="file://$PROJECT_DIR$/common/src/main/res/drawable/icon_like_article_select.xml" />
+    <file url="file://$PROJECT_DIR$/common/src/main/res/drawable/search_sp.xml" />
+    <file url="file://$PROJECT_DIR$/common/src/main/res/drawable/selector_reload.xml" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />

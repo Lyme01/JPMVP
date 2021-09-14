@@ -27,5 +27,10 @@ class RouterUrl {
         const val Search= model+"search"+ ACTIVITY
         const val Detail= model+"detail"+ ACTIVITY
     }
+    object Mine{
+        private const val model="/mine/"
+        const val Setting=model+"setting"+ ACTIVITY
+        const val Collection=model+"collection"+ ACTIVITY
+    }
 
 }

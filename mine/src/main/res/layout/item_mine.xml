@@ -12,7 +12,7 @@
         android:id="@+id/item_mine_iv"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        tools:src="@mipmap/ic_setting"
+        tools:src="@mipmap/add"
         android:layout_marginStart="15dp"/>
 
 
@@ -30,7 +30,7 @@
     <ImageView
         android:layout_width="16dp"
         android:layout_height="16dp"
-        android:src="@mipmap/gray_enter"
+        android:src="@mipmap/right_go"
         android:layout_marginEnd="10dp"/>
 
 

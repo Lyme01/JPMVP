@@ -25,6 +25,8 @@ class MinePresenter:BasePresenter<MineContract.MineView>(),MineContract.MinePres
                 setLogin(false)
                 setUserName("")
                 setPassword("")
+                mView?.logoutSuccess()
+
             }
 
         })

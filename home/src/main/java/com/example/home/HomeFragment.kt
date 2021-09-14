@@ -1,7 +1,6 @@
 package com.example.home
 
 import android.content.Context
-import android.content.Intent
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
@@ -15,7 +14,6 @@ import com.chad.library.adapter.base.listener.OnItemClickListener
 import com.example.common.arouter.ActionString
 import com.example.common.arouter.RouterUrl
 import com.example.common.base.BaseFragment
-import com.example.common.base.BaseWebActivity
 import com.example.common.bean.BannerBean
 import com.example.common.bean.DataX
 import com.example.common.bean.NewsBean
@@ -68,7 +66,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeCon
 //       binding.login.setOnClickListener(this)
         //LayoutManger必须设置，否则不显示列表
         binding.recycleView?.layoutManager = LinearLayoutManager(context)
-       mHomeAdapter = NewsAdapter(R.layout.item_home, null)
+       mHomeAdapter =
+           NewsAdapter(R.layout.item_home, null)
        binding.recycleView?.adapter =mHomeAdapter
       mHomeAdapter!!.setOnItemChildClickListener(this)
       mHomeAdapter!!.setOnItemClickListener(this)
@@ -151,13 +150,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeCon
 
     }
 
-    override fun addArticleSuccess(position: Int) {
+    override fun addArticleSuccess(position: Int,data: DataX) {
+        mHomeAdapter?.setData(position,data)
         Toast.makeText(context, "收藏成功", Toast.LENGTH_SHORT).show()
     }
 
 
 
-    override fun removeArticleSuccess(position: Int) {
+    override fun removeArticleSuccess(position: Int,data: DataX) {
+        mHomeAdapter?.setData(position,data)
         Toast.makeText(context, "已取消收藏", Toast.LENGTH_SHORT).show()
     }
 

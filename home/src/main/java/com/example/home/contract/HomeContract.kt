@@ -16,8 +16,8 @@ interface HomeContract :BaseContract {
         fun loadArticle(articles: NewsBean<List<DataX>>?)
         fun reloadArticle(articles: NewsBean<List<DataX>>?)
         fun showBanner(banners: List<BannerBean>)
-        fun addArticleSuccess(position: Int)
-        fun removeArticleSuccess(position: Int)
+        fun addArticleSuccess(position: Int,data: DataX)
+        fun removeArticleSuccess(position: Int,data: DataX)
 
     }
 
