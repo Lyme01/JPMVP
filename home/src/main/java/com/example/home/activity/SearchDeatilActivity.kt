@@ -93,15 +93,7 @@ class SearchDeatilActivity : BaseActivity<ActivitySearchDeatilBinding, HomePrese
 
     }
 
-//    override fun addArticleSuccess(position: Int) {
-//        Toast.makeText(context, "收藏成功", Toast.LENGTH_SHORT).show()
-//    }
-//
-//
-//
-//    override fun removeArticleSuccess(position: Int) {
-//        Toast.makeText(context, "已取消收藏", Toast.LENGTH_SHORT).show()
-//    }
+
 
 
     override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
@@ -134,11 +126,13 @@ class SearchDeatilActivity : BaseActivity<ActivitySearchDeatilBinding, HomePrese
         ARouter.getInstance().build(RouterUrl.Web.H5).withString(ActionString.H5URL, url).navigation()
     }
 
-    override fun addArticleSuccess(position: Int) {
+    override fun addSuccess(position: Int,data: DataX) {
+        mHomeAdapter?.setData(position,data)
         Toast.makeText(this, "收藏成功", Toast.LENGTH_SHORT).show()
     }
 
-    override fun removeArticleSuccess(position: Int) {
+    override fun removeSuccess(position: Int,data: DataX) {
+        mHomeAdapter?.setData(position,data)
         Toast.makeText(this, "已取消收藏", Toast.LENGTH_SHORT).show()
     }
 

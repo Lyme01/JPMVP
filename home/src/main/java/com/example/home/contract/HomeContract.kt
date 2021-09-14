@@ -27,8 +27,8 @@ interface HomeContract :BaseContract {
 
     interface SearchDetailView:BaseContract.BaseView {
         fun  getSearch(articles: NewsBean<List<DataX>>?)
-        fun addArticleSuccess(position: Int)
-        fun removeArticleSuccess(position: Int)
+        fun addSuccess(position: Int,data: DataX)
+        fun removeSuccess(position: Int,data: DataX)
         fun getSearchData(maxPage: Int, datas: NewsBean<List<DataX>>?, isRefresh: Boolean)
     }
 

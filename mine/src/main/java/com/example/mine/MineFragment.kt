@@ -1,20 +1,14 @@
 package com.example.mine
 
 
-import android.os.Handler
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
+import android.view.*
+
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.listener.GridSpanSizeLookup
 import com.chad.library.adapter.base.listener.OnItemClickListener
 import com.example.common.arouter.RouterUrl
 import com.example.common.base.BaseFragment
@@ -22,11 +16,10 @@ import com.example.common.bean.UserInfoBean
 import com.example.common.util.Constant
 import com.example.common.util.SpfUtils
 import com.example.mine.adapter.ItemListAdapter
-import com.example.mine.adapter.MultipleItemQuickAdapter
 import com.example.mine.bean.MineBean
-import com.example.mine.bean.MultipleItem
 import com.example.mine.contract.MineContract
 import com.example.mine.databinding.FragmentMineBinding
+import com.example.mine.dialog.CustomDialog
 import com.example.mine.presenter.MinePresenter
 import java.util.*
 
@@ -97,7 +90,8 @@ class MineFragment : BaseFragment<FragmentMineBinding, MinePresenter>(),View.OnC
                  }
              }
              binding.logout->{
-                 mPresenter?.logout()
+//                 mPresenter?.logout()
+                 initDialog()
              }
          }
 
@@ -140,6 +134,41 @@ class MineFragment : BaseFragment<FragmentMineBinding, MinePresenter>(),View.OnC
         return SpfUtils.get(Constant.KEY_IS_LOGIN, false);
     }
 
+    private fun initDialog(){
+
+        var dialog= context?.let { CustomDialog(it) }
+        val window: Window = dialog?.window!!
+        if (dialog != null && window != null) {
+            val attr: WindowManager.LayoutParams = window.attributes
+            if (attr != null) {
+                attr.height = ViewGroup.LayoutParams.WRAP_CONTENT
+                attr.width = ViewGroup.LayoutParams.WRAP_CONTENT
+                attr.gravity = Gravity.CENTER //设置dialog 在布局中的位置
+            }
+        }
+        dialog?.let {
+            it.setMessage("确定退出登录?")
+            it.setSingle(false)?.setOnClickBottomListener(object :CustomDialog.OnClickBottomListener{
+                override fun onPositiveClick() {
+                    mPresenter?.logout()
+                    dialog.dismiss()
+
+                }
+
+                override fun onNegtiveClick() {
+                    dialog.dismiss()
+                    Toast.makeText(context,"888", LENGTH_SHORT).show()
+                }
+
+            }
+
+            )?.show()
+        }
+
+
+
+
+    }
 
 
 

@@ -123,6 +123,8 @@ class HomePresenter : BasePresenter<BaseContract.BaseView>(),
             data.collect=false
                 if (mView is HomeContract.HomeView) {
                    data?.let { (mView as HomeContract.HomeView).removeArticleSuccess(position,data) }
+                }else if (mView is HomeContract.SearchDetailView) {
+                    data?.let { (mView as HomeContract.SearchDetailView).removeSuccess(position,data) }
                 }
 
             }
@@ -142,6 +144,9 @@ class HomePresenter : BasePresenter<BaseContract.BaseView>(),
                 if (mView is HomeContract.HomeView) {
                     data.collect=true
                     (mView as HomeContract.HomeView).addArticleSuccess(position,data)
+                }else if (mView is HomeContract.SearchDetailView){
+                    data.collect=true
+                    (mView as HomeContract.SearchDetailView).addSuccess(position,data)
                 }
 
             }
