@@ -12,8 +12,8 @@ import io.reactivex.schedulers.Schedulers
 
 class HomeModel {
 
-    fun getNews(num:Int) : Observable<BaseBean<NewsBean<List<DataX>>>> {
-        return  Api.getInstance().getApiService().getNews(num).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+    fun getNews(page:Int) : Observable<BaseBean<NewsBean<List<DataX>>>> {
+        return  Api.getInstance().getApiService().getNews(page).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
     }
 //
     fun getBanner(): Observable<BaseBean<List<BannerBean>>> {

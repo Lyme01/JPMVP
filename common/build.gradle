@@ -41,6 +41,18 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+
+}
+
+allprojects {
+    repositories {
+        maven{url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+        google()
+        jcenter()
+        maven { url 'https://jitpack.io' }
+
+    }
 }
 
 kapt {
@@ -87,6 +99,12 @@ dependencies {
     api  'com.youth.banner:banner:1.4.10'
 
     api 'com.github.LillteZheng:FlowHelper:v1.18'
+
+    //retrofit中省去写BaseBean库
+    implementation "org.paradisehell.convex:convex:1.0.0"
+
+    //WebView框架
+    implementation 'com.github.LillteZheng:ZWebHelper:v1.83'
 
 
 

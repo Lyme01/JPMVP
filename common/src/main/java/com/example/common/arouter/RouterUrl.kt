@@ -30,7 +30,7 @@ class RouterUrl {
     object Mine{
         private const val model="/mine/"
         const val Setting=model+"setting"+ ACTIVITY
-        const val Collection=model+"collection"+ ACTIVITY
+        const val Collect=model+"collect"+ ACTIVITY
     }
 
 }

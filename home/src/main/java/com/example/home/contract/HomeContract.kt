@@ -9,12 +9,7 @@ import com.example.common.bean.NewsBean
 
 interface HomeContract :BaseContract {
     interface HomeView : BaseContract.BaseView {
-//        fun testView(list: List<DataBean>)
-//        fun testTab(tabBean: TabBean)
-//          fun  showNews(newsBean: NewsBean)
-        fun showNews(articles: NewsBean<List<DataX>>?)
-        fun loadArticle(articles: NewsBean<List<DataX>>?)
-        fun reloadArticle(articles: NewsBean<List<DataX>>?)
+        fun showNews(maxPage: Int,articles: NewsBean<List<DataX>>?,isRefresh: Boolean)
         fun showBanner(banners: List<BannerBean>)
         fun addArticleSuccess(position: Int,data: DataX)
         fun removeArticleSuccess(position: Int,data: DataX)
@@ -26,16 +21,14 @@ interface HomeContract :BaseContract {
     }
 
     interface SearchDetailView:BaseContract.BaseView {
-        fun  getSearch(articles: NewsBean<List<DataX>>?)
         fun addSuccess(position: Int,data: DataX)
         fun removeSuccess(position: Int,data: DataX)
         fun getSearchData(maxPage: Int, datas: NewsBean<List<DataX>>?, isRefresh: Boolean)
     }
 
     interface Presenter  {
-       fun getNews()
-       fun loadMore()
-       fun reload()
+       fun getNews(page: Int,isRefresh: Boolean)
+
        fun  getBanner()
        fun search(page: Int, word: String, isRefresh: Boolean)
        fun removeArticle(position: Int, data: DataX)

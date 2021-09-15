@@ -5,6 +5,7 @@
     <application>
         <activity
             android:name=".activity.CollectActivity"
+            android:theme="@style/AppTheme.NoActionBar"
             android:exported="true" />
         <activity
             android:name=".activity.SettingActivity"

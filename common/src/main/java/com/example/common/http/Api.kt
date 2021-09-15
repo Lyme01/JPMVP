@@ -17,6 +17,7 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
+import org.paradisehell.convex.converter.ConvexConverterFactory
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -83,6 +84,7 @@ class Api {
         val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl("https://www.wanandroid.com") //添加转换器支持返回结果为String类型
 //            .baseUrl("http://v.juhe.cn/toutiao/") //添加转换器支持返回结果为String类型
+            .addConverterFactory(ConvexConverterFactory())
             .addConverterFactory(StringConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .client(getOkHttpClient()) //添加rxjava2适配器

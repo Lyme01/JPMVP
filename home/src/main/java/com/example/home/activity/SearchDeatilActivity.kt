@@ -89,9 +89,7 @@ class SearchDeatilActivity : BaseActivity<ActivitySearchDeatilBinding, HomePrese
         }
     }
 
-    override fun getSearch(articles: NewsBean<List<DataX>>?) {
 
-    }
 
 
 

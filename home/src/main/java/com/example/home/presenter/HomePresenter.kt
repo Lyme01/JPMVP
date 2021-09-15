@@ -15,10 +15,10 @@ import io.reactivex.disposables.Disposable
 
 class HomePresenter : BasePresenter<BaseContract.BaseView>(),
     HomeContract.Presenter {
-    private var mCurNum = 0
+
     var model=HomeModel()
-    override fun getNews() {
-      model.getNews(mCurNum).subscribe(object :
+    override fun getNews(page:Int,isRefresh:Boolean) {
+      model.getNews(page).subscribe(object :
           BaseResourceObserver<BaseBean<NewsBean<List<DataX>>>>() {
           override fun onSubscribe(d: Disposable) {
 
@@ -28,53 +28,15 @@ class HomePresenter : BasePresenter<BaseContract.BaseView>(),
           override fun onNext(t: BaseBean<NewsBean<List<DataX>>>) {
 
               if (mView is HomeContract.HomeView) {
-                  (mView as HomeContract.HomeView).showNews(t.data)
+                  t.data?.let { (mView as HomeContract.HomeView).showNews(it.pageCount,it,isRefresh) }
               }
-//              mView?.showNews(t.data)
-//              t.data?.let { mView?.showNews(it) }
           }
-
-
       })
     }
 
-    override fun loadMore() {//加载更多
-        mCurNum++
-        model.getNews(mCurNum).subscribe(object :
-            BaseResourceObserver<BaseBean<NewsBean<List<DataX>>>>() {
-            override fun onSubscribe(d: Disposable) {
-
-            }
-
-            override fun onNext(t: BaseBean<NewsBean<List<DataX>>>) {
-                if (mView is HomeContract.HomeView) {
-                    (mView as HomeContract.HomeView).loadArticle(t.data)
-                }
-
-            }
 
 
-        })
-    }
 
-    override fun reload() {
-        mCurNum=0
-        model.getNews(mCurNum).subscribe(object :
-            BaseResourceObserver<BaseBean<NewsBean<List<DataX>>>>() {
-            override fun onSubscribe(d: Disposable) {
-
-            }
-
-            override fun onNext(t: BaseBean<NewsBean<List<DataX>>>) {
-                if (mView is HomeContract.HomeView) {
-                    (mView as HomeContract.HomeView).reloadArticle(t.data)
-                }
-
-            }
-
-
-        })
-    }
 
     override fun getBanner() {
         model.getBanner().subscribe(object :

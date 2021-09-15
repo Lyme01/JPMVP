@@ -9,6 +9,10 @@ import android.widget.TextView;
 
 import com.example.common.R;
 
+import org.jetbrains.annotations.NotNull;
+
+import kotlin.Unit;
+
 /**
  * Created by PanZhe on 2016/7/22.
  */
@@ -83,4 +87,6 @@ public class TitleBuilder {
         }
         return this;
     }
+
+
 }

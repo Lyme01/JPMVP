@@ -10,7 +10,7 @@ import java.net.ConnectException
 import java.net.UnknownHostException
 import java.text.ParseException
 
-abstract class BaseResourceObserver<T: BaseBean<*>> : Observer<T>  {
+abstract class BaseResourceObserver<T> : Observer<T>  {
     /**
      * 打印日志到控制台
      * throwable.printStackTrace();

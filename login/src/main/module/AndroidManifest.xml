@@ -3,8 +3,10 @@
     package="com.example.login">
 
     <application>
-        <activity android:name=".activity.RegisterActivity"></activity>
-        <activity android:name=".activity.LoginPasswordActivity" />
+        <activity android:name=".activity.RegisterActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".activity.LoginPasswordActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

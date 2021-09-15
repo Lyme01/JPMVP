@@ -5,6 +5,7 @@ package com.example.common.http
 import com.example.common.base.BaseBean
 import com.example.common.bean.*
 import io.reactivex.Observable
+import org.paradisehell.convex.annotation.Transformer
 import retrofit2.http.*
 
 interface ApiService {
@@ -14,8 +15,8 @@ interface ApiService {
 //    @GET("/wxarticle/chapters/json")
 //    fun getData(): Observable<BaseBean<List<DataBean>>>
 
-    @GET("/article/list/{num}/json")
-    fun getNews(@Path("num") num: Int):Observable<BaseBean<NewsBean<List<DataX>>>>
+    @GET("/article/list/{page}/json")
+    fun getNews(@Path("page") page: Int):Observable<BaseBean<NewsBean<List<DataX>>>>
 
 
     @FormUrlEncoded
@@ -50,7 +51,9 @@ interface ApiService {
     fun getBanner():Observable<BaseBean<List<BannerBean>>>
 
 
-
+    /**
+     * 搜索
+     */
     @POST("/article/query/{page}/json")//
     fun search(
         @Path("page") page: Int,
@@ -71,6 +74,16 @@ interface ApiService {
     @POST("lg/uncollect_originId/{id}/json")
     fun removeArticle(@Path("id") id: Int): Observable<BaseBean<NewsBean<List<DataX>>>>
 
+    /**
+     *热词
+     */
     @GET("/hotkey/json")
     fun hotKey():Observable<BaseBean<List<HotKeyBean>>>
+
+    /**
+     * 收藏  不需要加BaseBean的写法
+     */
+    @GET("/lg/collect/list/{page}/json")
+    @Transformer(WanAndroidConvexTransformer::class)
+    fun getCollect( @Path("page") page: Int):Observable<NewsBean<List<DataX>>>
 }

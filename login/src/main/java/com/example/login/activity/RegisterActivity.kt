@@ -6,6 +6,7 @@ import android.widget.Toast
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.common.arouter.RouterUrl
 import com.example.common.base.BaseActivity
+import com.example.common.util.TitleBuilder
 
 import com.example.login.contract.LoginContract
 import com.example.login.databinding.ActivityRegisterBinding
@@ -20,7 +21,7 @@ class RegisterActivity :BaseActivity<ActivityRegisterBinding,LoginPresent>(),Log
     }
 
     override fun initView() {
-
+        TitleBuilder(this).setTitleText("注册")
     }
 
     override fun setEvents() {

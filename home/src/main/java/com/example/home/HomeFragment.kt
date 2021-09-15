@@ -38,6 +38,9 @@ import com.youth.banner.loader.ImageLoader
 import java.util.*
 
 
+
+
+
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
@@ -53,10 +56,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeCon
     OnItemClickListener, OnBannerListener {
 
     private var mHomeAdapter: NewsAdapter? = null
-//    private var mArticleBeans= mutableListOf<DataX>()
+    private var mArticleBeans= mutableListOf<DataX>()
     private var images= mutableListOf<String>()
     private var titles= mutableListOf<String>()
     private var urls= mutableListOf<String>()
+    private var page:Int=0
+    private var mMaxPage:Int? = null
 
 
    override fun initView() {
@@ -67,7 +72,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeCon
         //LayoutManger必须设置，否则不显示列表
         binding.recycleView?.layoutManager = LinearLayoutManager(context)
        mHomeAdapter =
-           NewsAdapter(R.layout.item_home, null)
+           NewsAdapter(R.layout.item_home, mArticleBeans)
        binding.recycleView?.adapter =mHomeAdapter
       mHomeAdapter!!.setOnItemChildClickListener(this)
       mHomeAdapter!!.setOnItemClickListener(this)
@@ -78,21 +83,29 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeCon
      binding.refresh.setRefreshFooter(BallPulseFooter(context).setSpinnerStyle(SpinnerStyle.Scale))
      binding.refresh.setOnRefreshListener(object : OnRefreshListener {
          override fun onRefresh(refreshlayout: RefreshLayout) {
-             mPresenter?.reload()
+             mPresenter?.getNews(0,true)
              refreshlayout.finishRefresh(2000 /*,false*/) //传入false表示刷新失败
          }
      })
 
     binding.refresh.setOnLoadMoreListener(object : OnLoadMoreListener {
         override fun onLoadMore(refreshlayout: RefreshLayout) {
-            mPresenter?.loadMore()
+            if (page>=mMaxPage!!){
+                Toast.makeText(context, "没有更多文章了", Toast.LENGTH_SHORT).show()
+            }else{
+                page++
+                mPresenter?.getNews(page,false)
+                mHomeAdapter?.notifyDataSetChanged()
+
+            }
             refreshlayout.finishLoadMore(2000 /*,false*/) //传入false表示加载失败
+
         }
     })
 }
     override fun initDatas() {
         mPresenter?.getBanner()
-        mPresenter?.getNews()
+        mPresenter?.getNews(page,true)
     }
 
 
@@ -107,28 +120,20 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeCon
     }
 
 
-    override fun showNews(articles: NewsBean<List<DataX>>?) {
-//        mArticleBeans.clear()
-//        articles?.let { mArticleBeans.addAll(it.datas) }
-        mHomeAdapter?.setNewInstance(articles?.datas as MutableList<DataX>?)
+    override fun showNews(maxPage:Int,articles: NewsBean<List<DataX>>?,isRefresh: Boolean) {
+
+        mMaxPage = maxPage
+        if (isRefresh) {
+           mArticleBeans.clear()
+        }
+        mArticleBeans.addAll(articles!!.datas)
+        mHomeAdapter?.notifyDataSetChanged()
+
     }
 
-    override fun loadArticle(articles: NewsBean<List<DataX>>?) {
-        if (articles != null) {
-//            articles?.let { mArticleBeans.addAll(it.datas) }
-            mHomeAdapter?.addData(articles?.datas)
-            mHomeAdapter?.notifyDataSetChanged()
-        }
-    }
 
-    override fun reloadArticle(articles: NewsBean<List<DataX>>?) {
-//        mArticleBeans.clear()
-        if (articles != null) {
-//            articles?.let { mArticleBeans.addAll(it.datas) }
-            mHomeAdapter?.setNewInstance(articles?.datas as MutableList<DataX>?)
-            mHomeAdapter?.notifyDataSetChanged()
-        }
-    }
+
+
 
     override fun showBanner(banners: List<BannerBean>) {
         for (i in banners.indices){
@@ -196,6 +201,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeCon
         webBean.url=mHomeAdapter?.data?.get(position)?.link!!
         webBean.title=mHomeAdapter?.data?.get(position)?.title
         ARouter.getInstance().build(RouterUrl.Web.H5).withSerializable(ActionString.H5URL, webBean).navigation()
+
+
+
     }
 
     //自定义的图片加载器

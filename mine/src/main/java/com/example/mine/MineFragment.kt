@@ -119,8 +119,13 @@ class MineFragment : BaseFragment<FragmentMineBinding, MinePresenter>(),View.OnC
 
     override fun onItemClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
       when(position){
-          1->{
-              Toast.makeText(context,"666",LENGTH_SHORT).show()
+          2->{
+              if (isLogin){
+                  ARouter.getInstance().build(RouterUrl.Mine.Collect).navigation()
+              }else{
+                  ARouter.getInstance().build(RouterUrl.Login.Login).navigation()
+              }
+
           }
           4->{
               ARouter.getInstance().build(RouterUrl.Mine.Setting).navigation()
