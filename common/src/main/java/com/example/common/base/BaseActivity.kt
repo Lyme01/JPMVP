@@ -14,6 +14,10 @@ import com.dylanc.viewbinding.inflateBindingWithGeneric
 import com.example.common.R
 import com.jaeger.library.StatusBarUtil
 import java.lang.ref.WeakReference
+import com.tbruyelle.rxpermissions2.RxPermissions
+
+
+
 
 
 /**
@@ -59,9 +63,9 @@ abstract class BaseActivity<VB : ViewBinding, P : BaseContract.BasePresenter> : 
 
     }
 
-     fun setStatusShow(){
+     private fun setStatusShow(){
         if (isShowStatus==false){
-            getWindow().setFlags(
+            window.setFlags(
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
             );
@@ -75,10 +79,6 @@ abstract class BaseActivity<VB : ViewBinding, P : BaseContract.BasePresenter> : 
 
     //初始化数据
     protected abstract fun initDatas()
-
-
-
-
 
 
     override fun onDestroy() {

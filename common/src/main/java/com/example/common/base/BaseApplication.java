@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.os.Looper;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.hjq.toast.ToastUtils;
 
 public class BaseApplication extends Application {
     private static final String TAG = "BaseApplication";
@@ -34,5 +35,8 @@ public class BaseApplication extends Application {
 //            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 //        }
 //    }
+
+        // 初始化 Toast 框架
+        ToastUtils.init(this);
     }
 }

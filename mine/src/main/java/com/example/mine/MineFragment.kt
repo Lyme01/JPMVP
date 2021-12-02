@@ -24,16 +24,7 @@ import com.example.mine.presenter.MinePresenter
 import java.util.*
 
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [MineFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MineFragment : BaseFragment<FragmentMineBinding, MinePresenter>(),View.OnClickListener,MineContract.MineView,OnItemClickListener{
 
     private var itemListAdapter: ItemListAdapter?=null
@@ -53,9 +44,10 @@ class MineFragment : BaseFragment<FragmentMineBinding, MinePresenter>(),View.OnC
 
     override fun initView() {
         binding.mineRecyclerview.layoutManager=LinearLayoutManager(context)
-      itemListAdapter= ItemListAdapter(R.layout.item_mine,datas)
+      itemListAdapter= ItemListAdapter()
         binding.mineRecyclerview.adapter=itemListAdapter
-        itemListAdapter!!.setOnItemClickListener(this)
+        itemListAdapter?.setNewInstance(datas)
+        itemListAdapter?.setOnItemClickListener(this)
         binding.tvPerson.setOnClickListener(this)
         binding.logout.setOnClickListener(this)
         if (isLogin){
@@ -72,9 +64,11 @@ class MineFragment : BaseFragment<FragmentMineBinding, MinePresenter>(),View.OnC
             val bean = MineBean()
             bean.resId = RESID[i]
             bean.text = TEXT[i]
-            datas.add(bean)
+           if (datas.size<5){
+               datas.add(bean)
+           }
         }
-        itemListAdapter?.notifyDataSetChanged()
+
        mPresenter?.getUserInfo()
     }
 

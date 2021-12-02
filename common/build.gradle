@@ -86,6 +86,10 @@ dependencies {
     api 'io.reactivex.rxjava2:rxandroid:2.0.2'
     implementation'com.github.franmontiel:PersistentCookieJar:v1.0.1'
 
+    api 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
+    //rxpermissions
+    api 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
+
 
     api 'com.jaeger.statusbarutil:library:1.5.1'
 
@@ -105,6 +109,9 @@ dependencies {
 
     //WebView框架
     implementation 'com.github.LillteZheng:ZWebHelper:v1.83'
+
+    // 吐司框架：https://github.com/getActivity/ToastUtils
+    api 'com.github.getActivity:ToastUtils:9.5'
 
 
 

@@ -25,6 +25,7 @@ import com.example.home.adapter.NewsAdapter
 import com.example.home.contract.HomeContract
 import com.example.home.databinding.FragmentHomeBinding
 import com.example.home.presenter.HomePresenter
+import com.hjq.toast.ToastUtils
 import com.scwang.smart.refresh.footer.BallPulseFooter
 import com.scwang.smart.refresh.header.BezierRadarHeader
 import com.scwang.smart.refresh.layout.api.RefreshLayout
@@ -68,40 +69,44 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeCon
        TitleBuilder(this.activity).setTitleText("首页").setRightIco(R.drawable.search).setRightIcoListening(
            leftReturnListener
        )
-//       binding.login.setOnClickListener(this)
-        //LayoutManger必须设置，否则不显示列表
-        binding.recycleView?.layoutManager = LinearLayoutManager(context)
+       val linearLayoutManager: LinearLayoutManager = object : LinearLayoutManager(
+           activity,
+           VERTICAL, false
+       ) {
+           override fun canScrollVertically(): Boolean {
+               return false
+           }
+       }
+
+        binding.recycleView?.layoutManager =linearLayoutManager
        mHomeAdapter =
            NewsAdapter(R.layout.item_home, mArticleBeans)
        binding.recycleView?.adapter =mHomeAdapter
+       binding.recycleView.isNestedScrollingEnabled = false
       mHomeAdapter!!.setOnItemChildClickListener(this)
       mHomeAdapter!!.setOnItemClickListener(this)
       mHomeAdapter!!.addChildClickViewIds(R.id.item_article_like)
-//    val dividerItemDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
-//    binding.recycleView.addItemDecoration(dividerItemDecoration);
      binding.refresh.setRefreshHeader(BezierRadarHeader(context).setEnableHorizontalDrag(true))
      binding.refresh.setRefreshFooter(BallPulseFooter(context).setSpinnerStyle(SpinnerStyle.Scale))
-     binding.refresh.setOnRefreshListener(object : OnRefreshListener {
-         override fun onRefresh(refreshlayout: RefreshLayout) {
-             mPresenter?.getNews(0,true)
-             refreshlayout.finishRefresh(2000 /*,false*/) //传入false表示刷新失败
-         }
-     })
+       binding.refresh.setOnRefreshListener(object : OnRefreshListener {
+           override fun onRefresh(refreshlayout: RefreshLayout) {
+               mPresenter?.getNews(page,true)
+               refreshlayout.finishRefresh(2000 /*,false*/) //传入false表示刷新失败
+           }
+       })
 
-    binding.refresh.setOnLoadMoreListener(object : OnLoadMoreListener {
-        override fun onLoadMore(refreshlayout: RefreshLayout) {
-            if (page>=mMaxPage!!){
-                Toast.makeText(context, "没有更多文章了", Toast.LENGTH_SHORT).show()
-            }else{
-                page++
-                mPresenter?.getNews(page,false)
-                mHomeAdapter?.notifyDataSetChanged()
-
-            }
-            refreshlayout.finishLoadMore(2000 /*,false*/) //传入false表示加载失败
-
-        }
-    })
+       binding.refresh.setOnLoadMoreListener(object : OnLoadMoreListener {
+           override fun onLoadMore(refreshlayout: RefreshLayout) {
+               if (page >= mMaxPage!!) {
+                   Toast.makeText(context, "没有更多文章了", Toast.LENGTH_SHORT).show()
+               } else {
+                   page++
+                   mPresenter?.getNews(page,false)
+                   mHomeAdapter?.notifyDataSetChanged()
+               }
+               refreshlayout.finishLoadMore(2000 /*,false*/) //传入false表示加载失败
+           }
+       })
 }
     override fun initDatas() {
         mPresenter?.getBanner()
@@ -157,14 +162,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeCon
 
     override fun addArticleSuccess(position: Int,data: DataX) {
         mHomeAdapter?.setData(position,data)
-        Toast.makeText(context, "收藏成功", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(context, "收藏成功", Toast.LENGTH_SHORT).show()
+          ToastUtils.show("收藏成功")
     }
 
 
 
     override fun removeArticleSuccess(position: Int,data: DataX) {
         mHomeAdapter?.setData(position,data)
-        Toast.makeText(context, "已取消收藏", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(context, "已取消收藏", Toast.LENGTH_SHORT).show()
+          ToastUtils.show("已取消收藏")
+
     }
 
 
