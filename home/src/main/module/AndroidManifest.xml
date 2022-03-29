@@ -2,10 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.home">
 
-
     <application>
-        <activity android:name=".activity.SearchDeatilActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".activity.BannerActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.SearchDeatilActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.TestActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.SearchActivity"
             android:theme="@style/AppTheme.NoActionBar" />

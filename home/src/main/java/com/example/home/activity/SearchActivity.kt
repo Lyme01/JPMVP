@@ -20,7 +20,7 @@ import android.util.Log
 import com.example.home.R
 
 
-@Route(path = RouterUrl.Home.Search)
+
 class SearchActivity : BaseActivity<ActivitySearchBinding, HomePresenter>(),HomeContract.SearchView,
     View.OnClickListener {
     private var mHomeAdapter: NewsAdapter? = null
