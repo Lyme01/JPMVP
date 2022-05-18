@@ -9,7 +9,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.example.common.arouter.RouterUrl
 import com.example.common.base.BaseActivity
 import com.example.common.bean.HotKeyBean
-import com.example.home.adapter.LabelAdaper
+//import com.example.home.adapter.LabelAdaper
 import com.example.home.adapter.NewsAdapter
 import com.example.home.contract.HomeContract
 import com.example.home.databinding.ActivitySearchBinding
@@ -24,7 +24,7 @@ import com.example.home.R
 class SearchActivity : BaseActivity<ActivitySearchBinding, HomePresenter>(),HomeContract.SearchView,
     View.OnClickListener {
     private var mHomeAdapter: NewsAdapter? = null
-    private var mLabelAdaper: LabelAdaper? = null
+//    private var mLabelAdaper: LabelAdaper? = null
     private val mDatas = mutableListOf<HotKeyBean>()
     override fun getPresenter(): HomePresenter {
        return  HomePresenter()
@@ -32,8 +32,8 @@ class SearchActivity : BaseActivity<ActivitySearchBinding, HomePresenter>(),Home
 
     override fun initView() {
         binding.titleRightIco.setOnClickListener(this)
-        mLabelAdaper = LabelAdaper(R.layout.item_textview, mDatas)
-        binding.labelflow?.setAdapter(mLabelAdaper)
+//        mLabelAdaper = LabelAdaper(R.layout.item_textview, mDatas)
+//        binding.labelflow?.setAdapter(mLabelAdaper)
 
 //        rxPermissions.request( //添加需要的权限
 //            Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -101,7 +101,7 @@ class SearchActivity : BaseActivity<ActivitySearchBinding, HomePresenter>(),Home
     override fun getHotKey(hotKeys: List<HotKeyBean>) {
         mDatas.clear()
         mDatas.addAll(hotKeys)
-        mLabelAdaper!!.notifyDataChanged()
+//        mLabelAdaper!!.notifyDataChanged()
     }
 
     override fun onClick(v: View?) {

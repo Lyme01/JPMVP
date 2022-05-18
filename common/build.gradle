@@ -102,7 +102,7 @@ dependencies {
 
     api  'com.youth.banner:banner:1.4.10'
 
-    api 'com.github.LillteZheng:FlowHelper:v1.18'
+//    api 'com.github.LillteZheng:FlowHelper:v1.18'
 
     //retrofit中省去写BaseBean库
     implementation "org.paradisehell.convex:convex:1.0.0"
